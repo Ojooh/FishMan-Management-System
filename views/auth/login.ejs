@@ -1,0 +1,80 @@
+<% include includes/head %>
+<body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 p-0">
+                <form class="form-horizontal login-form w-100 bg-dark p-5">
+                    <div class="form-group">
+                        <div class="col-12">
+                            <div class="text-center text-white fw-bold">
+                                <h1>FISH-MAN</h1>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="mt-5 pt-5 fw-bold text-primary text-left">
+                                <h3>Welcome Back!</h3>
+                                <p class="mb-4 text-uppercase text-muted">User Login</p>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+
+                    <div class="fomr-group">
+                        <div class="col-12">
+                            <div id="error" class="text-center text-danger"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text rounded-0" id="basic-addon1">@</span>
+                                <input type="text" id="username" class="form-control form-control-dark rounded-0" placeholder="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <input type="password" id="password" class="form-control form-control-dark rounded-0" placeholder="********">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-12">
+                            <div class="text-center mt-5">
+                                <button type="button" class="btn btn-outline-success text-uppercase loginBtn rounded-0">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 p-2">
+                <img class="login-img img-fluid" src="/img/fish guy.png">
+            </div>
+
+            <div class="col-12 px-3">
+                <div class="text-center">
+                    <div class="col-auto me-auto text-muted">Copyright © 2021
+                        <a target="blank" class="text-decoration-none" href="https://oye-dev.vercel.app/">
+                            Oye.dev
+                        </a>.
+                        All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script type="module" src="/js/custom/validator.js"></script>
+<script type="module" src="/js/custom/helper.js"></script>
+<script type="module" src="/js/custom/login.js"></script>
+</body>
+
+</html>
