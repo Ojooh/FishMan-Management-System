@@ -16,7 +16,7 @@
                                 <span>Change Image</span>
                             </label>
                             <input id="prodImg" type="file" onchange="loadFile(event)" />
-                            <img src="https://via.placeholder.com/200" id="output2" width="200" />
+                            <img src="https://via.placeholder.com/200" id="output_2" width="200" />
                         </div>
                     </div>
 
@@ -72,7 +72,7 @@
 </div>
 <script>
     var loadFile = function (event) {
-        var image = document.getElementById("output2");
+        var image = document.getElementById("output_2");
         image.src = URL.createObjectURL(event.target.files[0]);
     };
 </script>

@@ -8,6 +8,12 @@ let lh = new LoginHandler()
 /* GET Dashboard page. */
 router.get('/', ah.getDashboard);
 
+/* POST PERM DELETE ITEM. */
+router.post('/delete_item', ah.destroyItem);
+
+/* POST TOGGLE ITEM STATE. */
+router.post('/toggle_state', ah.toggleItemState);
+
 /* GET Users page. */
 router.get('/users', ah.getUsers);
 
@@ -20,17 +26,23 @@ router.get('/edit_user/:id/', ah.getUser);
 /* POST UPDATED USER. */
 router.post('/edit_user', lh.registerUser);
 
-/* POST UPDATED USER. */
-router.post('/delete_item', ah.destroyItem);
-
 /* GET stock */
 router.get('/stock', ah.getStock);
 
 /* POST TO ADD NEW TYPE */
 router.post('/add_type', ah.addType);
 
+
+/* POST TO update TYPE */
+router.post('/edit_type', ah.editType);
+
 /* POST TO ADD NEW PRODUCT */
 router.post('/add_product', ah.addProduct);
 
+/* GET PRODUCT LOG*/
+router.post('/get_prod_log', ah.getProdLog);
+
+/* POST TO update TYPE */
+router.post('/edit_product', ah.editProduct);
 
 module.exports = router;

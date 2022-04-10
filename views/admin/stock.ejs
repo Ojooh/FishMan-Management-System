@@ -10,6 +10,9 @@
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">Restock</h1>
                     </div>
+                    <div class="mb-3 w-100 row">
+                        <div id="error-st" class="col-12 text-danger"></div>
+                    </div>
                     
                     <div class="table-responsive h-50 mb-5">
                         <form action="">
@@ -21,13 +24,24 @@
                                                 data-bs-toggle="dropdown"></i>
                     
                                             <ul class="dropdown-menu">
-                                                <li><a class=" dropdown-item" href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#editTypeModal">Edit type</a></li>
-                                                <li><a class="dropdown-item" href="#">Deactivate</a></li>
-                                                <li>
+                                                <li id="editType">
+                                                    <a  class="dropdown-item" href="#">
+                                                        Edit Type
+                                                    </a>
+                                                </li>
+                                                <li id="toggleState">
+                                                    <a class="dropdown-item" href="#">
+                                                        Activate/Deactivate Type
+                                                    </a>
+                                                </li>
+                                                <li >
                                                     <hr class="dropdown-divider">
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Delete type</a></li>
+                                                <li id="permDelete">
+                                                    <a class="dropdown-item" href="#">
+                                                        Delete type
+                                                    </a>
+                                                </li>
                     
                                             </ul>
                                         </th>
@@ -37,13 +51,24 @@
                                                 data-bs-toggle="dropdown"></i>
                     
                                             <ul class="dropdown-menu">
-                                                <li><a class=" dropdown-item" href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#editProductModal">Edit product</a></li>
-                                                <li><a class="dropdown-item" href="#">Deactivate</a></li>
+                                                <li id="editProduct">
+                                                    <a class="dropdown-item" href="#">
+                                                        Edit Product
+                                                    </a>
+                                                </li>
+                                                <li id="toggleProdState">
+                                                    <a class="dropdown-item" href="#">
+                                                        Activate/Deactivate Product
+                                                    </a>
+                                                </li>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Delete product</a></li>
+                                                <li id="permDeleteProd">
+                                                    <a class="dropdown-item" href="#">
+                                                        Delete Product
+                                                    </a>
+                                                </li>
                                             </ul>
                     
                                         </th>
@@ -61,7 +86,7 @@
                                             <% for( var ty=0; ty < types.length; ty++) { %>
                                                 <tr>
                                                     <!-- table-active -->
-                                                    <td class="type-row" data-id="<%= types[ty].id %>" data-name="<%= types[ty].name %>" scope="col">
+                                                    <td class="type-row <%= ((types[ty].is_active && types[ty].is_active == '0' ? 'text-danger' : '')) %>" data-id="<%= types[ty].id %>" data-state="<%= types[ty].is_active %>" data-name="<%= types[ty].name %>" data-link="<%= types[ty].img %>" scope="col">
                                                         <%= types[ty].name %> <i class="fa fa-chevron-right float-end"></i>
                                                     </td>
                                                 </tr>
@@ -85,7 +110,9 @@
                                                 <% if (prods && prods.length> 0 ) { %>
                                                     <% for( var p=0; p < prods.length; p++) { %>
                                                         <tr class="product product-type-<%= prods[p].type %> deactivated">
-                                                                <td class="product-row" scope="col">
+                                                                <td class="product-row <%= ((prods[p].is_active && prods[p].is_active == '0' ? 'text-danger' : '')) %>" data-id="<%= prods[p].id %>" 
+                                                                    data-state="<%= prods[p].is_active %>" data-name="<%= prods[p].name %>" 
+                                                                    data-info="<%= prods[p].img+'*'+prods[p].type+'*'+prods[p].qty+'*'+prods[p].size+'*'+prods[p].bought+'*'+prods[p].sell %>" scope="col">
                                                                     <%= prods[p].name %> <i class="fa fa-chevron-right float-end"></i>
                                                                 </td>
                                                         </tr>
@@ -103,61 +130,64 @@
                     
                                         <td colspan="1" class="p-0">
                                             <table class="table">
-                    
+                                            <% if (prods && prods.length> 0 ) { %>
+                                                <% for( var p=0; p < prods.length; p++) { %>
+                                                    <tr class="product-view product-view-<%= prods[p].id %> deactivated">
+                                                        <td scope="col" class="border-0">
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Image: <img
+                                                                        src="<%= ((prods[p].img && prods[p].img != '') ? prods[p].img : 'https://via.placeholder.com/300/09f/fff.png') %>" height="100"
+                                                                        width="100" class="img-thumbnail" alt="">
+                                                                </li>
+                                                                <!-- .toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ) -->
+                                                                <li class="list-group-item">Bought Price: &#8358; <%= (prods[p].bought).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ) %></li>
+                                                                <li class="list-group-item">Sell Price: &#8358; <%= (prods[p].sell).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ) %></li>
+                                                                <li class="list-group-item">Quantity: <%= prods[p].qty %></li>
+                                                                <li class="list-group-item">Size: <%= prods[p].size %>kg</li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                        
+                                                    <tr class="product-view product-view-<%= prods[p].id %> deactivated">
+                                                        <td scope="col">
+                                                            <a data-bs-toggle="collapse" href="#collapseExample" role="button"
+                                                                class="text-decoration-none text-black load-logs" aria-expanded="false"
+                                                                aria-controls="collapseExample">
+                                                                <b>Logs</b>
+                                                                <i class="fa fa-chevron-down float-end"></i>
+                                                            </a>
+                        
+                                                            <div class="collapse mt-3" id="collapseExample">
+                                                                <table class="table table-bordered table-light table-sm">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">#</th>
+                                                                            <th scope="col">Date</th>
+                                                                            <th scope="col">Qty</th>
+                                                                            <th scope="col">Size(kg)</th>
+                                                                            <th scope="col">Bought Price(&#8358;)</th>
+                                                                            <th scope="col">Sell Price(&#8358;)</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="prodLog-<%= prods[p].id %>">
+                                                                        <tr>
+                                                                            <td class="alert alert-danger text-danger prd" scope="col">
+                                                                                No Product Data Available
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                <% } %>
+                                            <% } else { %>
                                                 <tr>
-                                                    <td scope="col" class="border-0">
-                                                        <ul class="list-group">
-                                                            <li class="list-group-item">Image: <img
-                                                                    src="https://via.placeholder.com/300/09f/fff.png" height="100"
-                                                                    width="100" class="img-thumbnail" alt="">
-                                                            </li>
-                                                            <li class="list-group-item">Price: 6,500</li>
-                                                            <li class="list-group-item">Quantity: 20</li>
-                                                            <li class="list-group-item">Size: 20kg</li>
-                                                        </ul>
+                                                    <td class="alert alert-danger text-danger prd" scope="col">
+                                                        No Product Data Available
                                                     </td>
                                                 </tr>
-                    
-                                                <tr>
-                                                    <td scope="col">
-                                                        <a data-bs-toggle="collapse" href="#collapseExample" role="button"
-                                                            class="text-decoration-none text-black" aria-expanded="false"
-                                                            aria-controls="collapseExample">
-                                                            <b>Logs</b>
-                                                            <i class="fa fa-chevron-down float-end"></i>
-                                                        </a>
-                    
-                                                        <div class="collapse mt-3" id="collapseExample">
-                                                            <table class="table table-bordered table-light table-sm">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th scope="col">#</th>
-                                                                        <th scope="col">Date</th>
-                                                                        <th scope="col">Qty</th>
-                                                                        <th scope="col">Size(kg)</th>
-                                                                        <th scope="col">Price(&#8358;)</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <th scope="row">1</th>
-                                                                        <td>03/02/2020</td>
-                                                                        <td>540</td>
-                                                                        <td>23</td>
-                                                                        <td>5000</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row">2</th>
-                                                                        <td>03/02/2020</td>
-                                                                        <td>540</td>
-                                                                        <td>23</td>
-                                                                        <td>5000</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                            <% } %>
                     
                     
                                             </table>
@@ -174,48 +204,46 @@
                     </div>
                     
                     <div>
-                        <table class="table table-striped table-bordered">
+                    <% if (prods && prods.length> 0 ) { %>
+                            
+                        <table class="table table-striped table-bordered mb-5">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Product Name</th>
                                     <th scope="col">Type</th>
-                                    <th scope="col">Price (&#8358;)</th>
+                                    <th scope="col">Bought Price (&#8358;)</th>
+                                    <th scope="col">Sell Price (&#8358;)</th>
                                     <th scope="col">Qty</th>
                                     <th scope="col">Size (kg)</th>
                                     <th scope="col">Avbl. Vault</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            <% for( var p=0; p < prods.length; p++) { %>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Tilapia</td>
-                                    <td>Fish</td>
-                                    <td>5000</td>
-                                    <td>430</td>
-                                    <td>20</td>
-                                    <td>300</td>
+                                    <th scope="row"><%= p + 1 %></th>
+                                    <td><%= prods[p].name %></td>
+                                    <td><%= prods[p].type_name %></td>
+                                    <td><%= prods[p].bought %></td>
+                                    <td><%= prods[p].sell %></td>
+                                    <td><%= prods[p].qty %></td>
+                                    <td><%= prods[p].size %></td>
+                                    <td>
+                                        <%= prods[p].qty_av %>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Otto</td>
-                                </tr>
+                            <% } %>
                             </tbody>
                         </table>
+                     
+                    <% } else { %>
+                        <div class="row">
+                            <div class="col-12 alert alert-danger text-danger prd">
+                                No Inventory Data Available
+                            </div>
+                        </div>
+                    <% } %>
                     </div>
                 </main>
 

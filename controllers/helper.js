@@ -136,6 +136,14 @@ let helperFunctions = class {
         }
     }
 
+    async getNextId(table) {
+        let sql = `SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = "fishman"
+                    AND TABLE_NAME = "` + table + `"`
+        var last = await this.DB.runSQLQuery(sql);
+
+        return last[0]["AUTO_INCREMENT"];
+    }
+
     async generateUID(title, table, width) {
         var id = await this.getLastId(table);
         let n = (id + 1).toString() + '';

@@ -101,7 +101,7 @@ let validationClass = class {
         let exist = await this.HF.Exist("fish_type", "name", req.body.name, req.body.ID);
 
 
-        if (!req.files || this.HF.isImage(req.files.link) == false) {
+        if (req.files && this.HF.isImage(req.files.link) == false) {
             return [null, false, { message: 'Type Image Input is not valid, must be an image file' }];
         }
         else if (this.HF.isEmpty(req.body.name) || this.HF.validateName(req.body.name) == false) {
@@ -112,11 +112,15 @@ let validationClass = class {
         }
         else {
             req.body.name = this.HF.sentenceCase(req.body.name);
-            let img = req.files.link;
-            let ext = img.name.split(".");
-            let new_name = uuidv4() + "." + ext[ext.length - 1];
-            let dir = "public/img/types/" + new_name;
-            let db_path = "/img/types/" + new_name;
+            let img, dir, db_path = "";
+            if (req.files) {
+                img = req.files.link;
+                let ext = img.name.split(".");
+                let new_name = uuidv4() + "." + ext[ext.length - 1];
+                dir = "public/img/types/" + new_name;
+                db_path = "/img/types/" + new_name;
+            }
+
 
             let msg = req.body.name + ' Type Profile Created successfully'
             if (req.body.type != "add") {
@@ -136,7 +140,7 @@ let validationClass = class {
         if (!req.body.type || this.HF.isEmpty(req.body.type) || req.body.type == "undefined") {
             return [null, false, { message: 'No product Type was selected please go back and select a product' }];
         }
-        else if (!req.files || this.HF.isImage(req.files.link) == false) {
+        else if (req.files && this.HF.isImage(req.files.link) == false) {
             return [null, false, { message: 'Product Image Input is not valid, must be an image file' }];
         }
         else if (this.HF.isEmpty(req.body.name) || this.HF.validateName(req.body.name) == false) {
@@ -167,19 +171,23 @@ let validationClass = class {
         }
         else {
             req.body.name = this.HF.sentenceCase(req.body.name);
-            let img = req.files.link;
-            let ext = img.name.split(".");
-            let new_name = uuidv4() + "." + ext[ext.length - 1];
-            let dir = "public/img/products/" + new_name;
-            let db_path = "/img/products/" + new_name;
+            let img, dir, db_path = "";
+            if (req.files) {
+                img = req.files.link;
+                let ext = img.name.split(".");
+                let new_name = uuidv4() + "." + ext[ext.length - 1];
+                dir = "public/img/products/" + new_name;
+                db_path = "/img/products/" + new_name;
+            }
 
             let msg = req.body.name + ' Product Profile Created successfully'
+            let id = await this.HF.getNextId("products");
             if (req.body.type != "add") {
                 msg = req.body.name + ' Product Profile Updated successfully'
             }
 
             let extra = {
-                img: img, db_path: db_path, dir: dir
+                img: img, db_path: db_path, dir: dir, prod_id: id
             }
             return [extra, true, { message: msg }];
         }

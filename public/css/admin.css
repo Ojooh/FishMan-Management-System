@@ -127,6 +127,11 @@
   border-radius: 0;
 }
 
+.table-active-pro {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  color: black;
+}
+
 .type-row:hover,
 .product-row:hover {
   background-color: rgba(0, 0, 0, 0.1) !important;
