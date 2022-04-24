@@ -45,4 +45,19 @@ router.post('/get_prod_log', ah.getProdLog);
 /* POST TO update TYPE */
 router.post('/edit_product', ah.editProduct);
 
+/* GET vault */
+router.get('/vault', ah.getVault);
+
+/* POST TO ADD NEW vault record */
+router.post('/add_vault', ah.addVaultRecord);
+
+/* GET PRODUCT by type*/
+router.post('/get_prod_by_type', ah.getProdByType);
+
+/* GET vault */
+router.get('/pos', ah.getPOS);
+
+/* GET search PRODUCT by type*/
+router.post('/search_prod_by_type', ah.searchProdByType);
+
 module.exports = router;

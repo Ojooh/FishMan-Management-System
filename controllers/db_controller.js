@@ -25,10 +25,15 @@ let DatabaseManager = class {
             if (obj && obj != "") {
                 Object.keys(obj).forEach(function (key) {
                     let j = obj[key]
-                    if (key[key.length - 1] == ">") {
-                        key = key.slice(0, -1);
+                    if (j[j.length - 1] == ">") {
+                        const val = j.slice(0, -1)
+                        where = where + key + " > '" + val + "')";
                     }
-                    if (j[j.length - 1] == `&`) {
+                    else if (j[j.length - 1] == "<") {
+                        const val = j.slice(0, -1)
+                        where = where + key + " < '" + val + "')";
+                    }
+                    else if (j[j.length - 1] == `&`) {
                         const val = j.slice(0, -1)
                         where = where + key + " = '" + val + "') AND (";
                     }
@@ -119,7 +124,7 @@ let DatabaseManager = class {
         col = col.slice(0, -1) + ")";
 
         Object.keys(param3).forEach(function (key) {
-           let  j = param3[key];
+            let j = param3[key];
             value = value + '"' + j + '", ';
         });
 
@@ -135,7 +140,7 @@ let DatabaseManager = class {
         if (obj && obj != "") {
             console.log(obj);
             Object.keys(obj).forEach(function (key) {
-               let j = obj[key]
+                let j = obj[key]
                 console.log(j)
                 if (j[j.length - 1] == '&') {
                     const val = j.slice(0, -1)

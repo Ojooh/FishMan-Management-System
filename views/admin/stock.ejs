@@ -112,7 +112,7 @@
                                                         <tr class="product product-type-<%= prods[p].type %> deactivated">
                                                                 <td class="product-row <%= ((prods[p].is_active && prods[p].is_active == '0' ? 'text-danger' : '')) %>" data-id="<%= prods[p].id %>" 
                                                                     data-state="<%= prods[p].is_active %>" data-name="<%= prods[p].name %>" 
-                                                                    data-info="<%= prods[p].img+'*'+prods[p].type+'*'+prods[p].qty+'*'+prods[p].size+'*'+prods[p].bought+'*'+prods[p].sell %>" scope="col">
+                                                                    data-info="<%= prods[p].img+'*'+prods[p].type+'*'+prods[p].qty+'*'+prods[p].size+'*'+prods[p].bought+'*'+prods[p].sell+'*'+prods[p].pieces %>" scope="col">
                                                                     <%= prods[p].name %> <i class="fa fa-chevron-right float-end"></i>
                                                                 </td>
                                                         </tr>
@@ -143,7 +143,9 @@
                                                                 <li class="list-group-item">Bought Price: &#8358; <%= (prods[p].bought).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ) %></li>
                                                                 <li class="list-group-item">Sell Price: &#8358; <%= (prods[p].sell).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ) %></li>
                                                                 <li class="list-group-item">Quantity: <%= prods[p].qty %></li>
-                                                                <li class="list-group-item">Size: <%= prods[p].size %>kg</li>
+                                                                <li class="list-group-item">Pieces: <%= prods[p].pieces %>
+                                                                </li>
+                                                                <li class="list-group-item">Size: <%= prods[p].size %> kg</li>
                                                             </ul>
                                                         </td>
                                                     </tr>
@@ -164,6 +166,7 @@
                                                                             <th scope="col">#</th>
                                                                             <th scope="col">Date</th>
                                                                             <th scope="col">Qty</th>
+                                                                            <th scope="col">Pieces</th>
                                                                             <th scope="col">Size(kg)</th>
                                                                             <th scope="col">Bought Price(&#8358;)</th>
                                                                             <th scope="col">Sell Price(&#8358;)</th>
@@ -215,6 +218,7 @@
                                     <th scope="col">Bought Price (&#8358;)</th>
                                     <th scope="col">Sell Price (&#8358;)</th>
                                     <th scope="col">Qty</th>
+                                    <th scope="col">Pieces</th>
                                     <th scope="col">Size (kg)</th>
                                     <th scope="col">Avbl. Vault</th>
                                 </tr>
@@ -228,6 +232,9 @@
                                     <td><%= prods[p].bought %></td>
                                     <td><%= prods[p].sell %></td>
                                     <td><%= prods[p].qty %></td>
+                                    <td>
+                                        <%= prods[p].pieces %>
+                                    </td>
                                     <td><%= prods[p].size %></td>
                                     <td>
                                         <%= prods[p].qty_av %>

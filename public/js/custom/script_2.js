@@ -201,6 +201,7 @@ jQuery(document).ready(function ($) {
             let size = info[3];
             let bought = info[4];
             let sell = info[5];
+            let pieces = info[6];
 
             $("#output_2").attr("src", link);
             $("#prodType").val(type);
@@ -209,6 +210,7 @@ jQuery(document).ready(function ($) {
             $("#size").val(size)
             $("#bPrice").val(bought)
             $("#sPrice").val(sell)
+            $("#pieces").val(pieces)
             submitProduct.html("Update");
             submitProduct.attr("data-id", ID);
             submitProduct.attr("data-type", info[1]);
@@ -392,6 +394,7 @@ jQuery(document).ready(function ($) {
         let type = $(this).attr("data-type");
         let name = $("#prodName").val();
         let qty = $("#qty").val();
+        let pieces = $("#pieces").val();
         let size = $("#size").val();
         let bprice = $("#bPrice").val();
         let sprice = $("#sPrice").val();
@@ -409,8 +412,11 @@ jQuery(document).ready(function ($) {
         else if (isEmpty(name) || validateName(name) == false) {
             showError("danger", "Type Name Input is not Valid", "error-p");
         }
-        else if (isEmpty(qty) || validInteger(qty) == false) {
+        else if (isEmpty(qty) || validFloat(qty) == false) {
             showError("danger", "Quantity Input is not Valid", "error-p");
+        }
+        else if (isEmpty(pieces) || validInteger(pieces) == false) {
+            showError("danger", "Pieces Input is not Valid", "error-p");
         }
         else if (isEmpty(size) || validFloat(size) == false) {
             showError("danger", "Size Input is not Valid", "error-p");
@@ -427,6 +433,7 @@ jQuery(document).ready(function ($) {
             data.append("name", name);
             data.append("link", link);
             data.append("qty", qty);
+            data.append("pieces", pieces);
             data.append("size", size);
             data.append("bprice", bprice);
             data.append("sprice", sprice);
@@ -509,6 +516,7 @@ jQuery(document).ready(function ($) {
                             <th scope="row">`+ j + `</th>
                             <td>`+ item["date_created"] + `</td>
                             <td>`+ item["qty"] + `</td>
+                            <td>`+ item["pieces"] + `</td>
                             <td>`+ item["size"] + `</td>
                             <td>`+ item["bought"] + `</td>
                             <td>`+ item["sell"] + `</td>

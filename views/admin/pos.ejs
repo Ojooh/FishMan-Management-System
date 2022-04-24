@@ -1,0 +1,187 @@
+<% include includes/head %>
+
+    <body>
+        <% include includes/topbar %>
+            <div class="container-fluid">
+                <div class="row">
+
+                    <% include includes/sidebar %>
+
+                    <main id="pos" class="ms-sm-auto col-lg-10 px-md-4">
+                        <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">POS</h1>
+                        </div> -->
+                        <div class="row">
+                    
+                            <div class="col-md-8 vh-100 py-2">
+                                <div class="card h-75 rounded-0 bg-white">
+                                    <div class="card-header text-center">
+                    
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <button id="full-screen" onclick="openFullscreen();" type="button"
+                                                    class="btn btn-lg float-start border-0 py-0">
+                                                    <i class="fa fa-expand"></i></button>
+                    
+                                                <button id="normal-screen" onclick="closeFullscreen();" type="button"
+                                                    class="btn btn-lg float-start border-0 py-0 d-none">
+                                                    <i class="fa fa-compress"></i></button>
+                                            </div>
+                                            <form class="col-md-6">
+                                                <div class="d-flex">
+                                                    <input class="form-control me-2 rounded-0" type="search" id="searchInput" placeholder="Search here..."
+                                                        aria-label="Search">
+                                                    <button class="btn btn-outline-success rounded-0" id="searchBtn" type="button">
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                                </div>
+                    
+                    
+                                            </form>
+                                        </div>
+                    
+                                    </div>
+                    
+                                    <div class="card-body overflow-auto">
+                                        <div class="container">
+                                        <% if (prods && prods.length> 0 ) { %>
+                                            <div class="row mb-4">
+                                            <% for( var p=0; p < prods.length; p++) { %>
+                                                <div class="col-md-3 text-center deactivated prods prods-<%= prods[p].type %> prod-<%= prods[p].id %>"" >
+                                                    <div class="border p-1 mb-2">
+                                                        <img src="<%= ((prods[p].img && prods[p].img != '') ? prods[p].img : 'https://via.placeholder.com/300/09f/fff.png') %>"
+                                                            class="img-fluid pos-item" alt="">
+                                                    </div>
+                                                    <h6 class="small"><%= prods[p].name %></h6>
+                                                    <h6 class="text-primary small">&#8358; <%= (prods[p].sell).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ) %></h6>
+                                                </div>
+                                            <% } %>
+                                            </div>
+                                        <% } %>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="jumbotron d-flex align-items-center h-15 rounded-0">
+                                    <div class="container text-center">
+
+                                    <% if (types && types.length> 0 ) { %>
+                                        <div class="row">
+                                        <% for( var ty=0; ty < types.length; ty++) { %>
+
+
+                                            <div class="col-md-3 my-2">
+                                                <button class="btn btn-blue-800 btn-lg rounded-0 w-100 fs-6 text-uppercase active type-btn" data-id="<%= types[ty].id %>">
+                                                    <img src="<%= ((types[ty].img && types[ty].img != '' ? types[ty].img : '')) %>" class="pos-button-icon"><br> 
+                                                    <%= types[ty].name %>
+                                                </button>
+                                            </div>
+
+                                        <% } %>   
+                                        </div>
+                                    <% } %>
+                                    </div>
+                                </div>
+                    
+                    
+                    
+                                <div class="my-4 float-end">
+                                    <button type="button" class="btn btn-outline-danger rounded-0">Cancel Order</button>
+                                    <button type="button" class="btn btn-outline-secondary rounded-0 position-relative">
+                                        Hold Order
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                                            2
+                                            <span class="visually-hidden">unfinished orders</span>
+                                        </span>
+                                    </button>
+                    
+                                    <!-- <button type="button" class="btn btn-outline-secondary rounded-0">Hold Order</button> -->
+                                </div>
+                            </div>
+                    
+                            <div class="col-md-4 vh-100 py-2">
+                                <div class="card h-90 rounded-0 bg-white">
+                                    <div class="card-header text-center"><b>Checkout</b></div>
+                                    <div class="card-body p-0 overflow-auto">
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless">
+                                                <thead class="text-secondary small text-center table-active">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Name</th>
+                                                        <th>Type</th>
+                                                        <th>Size</th>
+                                                        <th>Price(&#8358;)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                    
+                                                    <tr class="border-bottom">
+                                                        <td><i class="fa fa-trash"></i></td>
+                                                        <td>Titus</td>
+                                                        <td><select class="form-select" aria-label="Default select example">
+                                                                <option selected disabled>Select</option>
+                                                                <option value="1">per Carton</option>
+                                                                <option value="2">per KG</option>
+                                                            </select>
+                                                        </td>
+                                                        <td><input type="number" class="form-control" /></td>
+                                                        <td>6,000.00</td>
+                                                    </tr>
+                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                    
+                    
+                                    </div>
+                                    <div class="card-footer p-0">
+                    
+                                        <table class="table table-light table-borderless m-0 small">
+                    
+                                            <tr class="">
+                                                <td>Discounts (%)</td>
+                                                <td class="text-end"><input type="number" class="form-control" /></td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>Sub Total</td>
+                                                <td class="text-end">&#8358;100.00</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>Tax (%)</td>
+                                                <td class="text-end">&#8358;1.50</td>
+                                            </tr>
+                                        </table>
+                    
+                                        <table class="table table-borderless bg-white border-top m-0">
+                                            <tr class="">
+                                                <td class="">Total</td>
+                                                <td class="text-end text-primary">&#8358;20,000.00</td>
+                                            </tr>
+                                        </table>
+                    
+                                    </div>
+                                </div>
+                    
+                                <button type="button" class="btn btn-success form-control my-4 rounded-0" data-bs-toggle="modal"
+                                    data-bs-target="#payModal">Pay
+                                    (&#8358;20,000.00)</button>
+                            </div>
+                    
+                        </div>
+                    
+                    
+                    </main>
+
+                </div>
+            </div>
+
+            <script src="/js/custom/main.js"></script>
+            <script type="module" src="/js/custom/validator.js"></script>
+            <script type="module" src="/js/custom/helper.js"></script>
+            <script type="module" src="/js/custom/script_4.js"></script>
+    </body>
+
+    </html>

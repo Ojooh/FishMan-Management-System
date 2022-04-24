@@ -246,7 +246,7 @@ let adminControllerClass = class {
                 var Types = await this.DB.runSQLQuery(sql);
 
                 sql = `SELECT products.id, products.name, products.img, products.type, 
-                            fish_type.name As type_name, products.qty, products.qty_av, products.size, 
+                            fish_type.name As type_name, products.qty, products.pieces, products.qty_av, products.size, 
                             products.bought, products.sell, products.is_active, products.date_created 
                             FROM products INNER JOIN fish_type on products.type 
                             WHERE products.type = fish_type.id`
@@ -405,7 +405,7 @@ let adminControllerClass = class {
                     if (req.files && req.files !== undefined && req.files.link && req.files.link !== undefined && req.files.link != "") {
                         param2 = {
                             "name": req.body.name, "img": blah.db_path,
-                            "type": req.body.type, "qty": req.body.qty,
+                            "type": req.body.type, "qty": req.body.qty, "pieces": req.body.pieces,
                             "qty_av": req.body.qty, "size": req.body.size, "bought": req.body.bprice,
                             "sell": req.body.sprice, "is_active": '1'
                         };
@@ -414,14 +414,14 @@ let adminControllerClass = class {
                     } else {
                         param2 = {
                             "name": req.body.name, "img": "",
-                            "type": req.body.type, "qty": req.body.qty,
+                            "type": req.body.type, "qty": req.body.qty, "pieces": req.body.pieces,
                             "qty_av": req.body.qty, "size": req.body.size, "bought": req.body.bprice,
                             "sell": req.body.sprice, "is_active": '1'
                         };
                     }
                     param2_2 = {
                         "qty": req.body.qty, "size": req.body.size, "bought": req.body.bprice,
-                        "sell": req.body.sprice, "product": blah.prod_id
+                        "sell": req.body.sprice, "product": blah.prod_id, "pieces": req.body.pieces,
                     }
 
                     let subj = "Created New " + req.body.name + " Product Profile"
@@ -522,24 +522,24 @@ let adminControllerClass = class {
                     if (req.files && req.files !== undefined && req.files.link && req.files.link !== undefined && req.files.link != "") {
                         param2 = {
                             "name": req.body.name, "img": blah.db_path,
-                            "type": req.body.type, "qty": req.body.qty,
+                            "type": req.body.type, "qty": req.body.qty, "pieces": req.body.pieces,
                             "size": req.body.size, "bought": req.body.bprice,
-                            "sell": req.body.sprice, "is_active": '1'
+                            "sell": req.body.sprice, "is_active": '1', "qty_av": ((Prev[0].qty < req.body.qty) ? Prev[0].qty_av : req.body.qty),
                         };
                         blah.img.mv(blah.dir);
                     } else {
                         param2 = {
                             "name": req.body.name, "img": Prev[0].img,
-                            "type": req.body.type, "qty": req.body.qty,
+                            "type": req.body.type, "qty": req.body.qty, "pieces": req.body.pieces,
                             "size": req.body.size, "bought": req.body.bprice,
-                            "sell": req.body.sprice, "is_active": '1'
+                            "sell": req.body.sprice, "is_active": '1', "qty_av": ((Prev[0].qty < req.body.qty) ? Prev[0].qty_av : req.body.qty),
                         };
                     }
 
                     if (Prev[0].qty != req.body.qty || Prev[0].size != req.body.size || Prev[0].bought != req.body.bprice || Prev[0].sell != req.body.sprice) {
                         param2_2 = {
                             "qty": req.body.qty, "size": req.body.size, "bought": req.body.bprice,
-                            "sell": req.body.sprice, "product": req.body.ID
+                            "sell": req.body.sprice, "product": req.body.ID, "pieces": req.body.pieces,
                         }
                         var sql = this.DB.generateInsertSQL(param1_1, param2_2, param2_2);
                         await this.DB.runSQLQuery(sql);
@@ -563,6 +563,203 @@ let adminControllerClass = class {
                     data.error = msg.message;
                     res.json(data)
                 }
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    getVault = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "username": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+                let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
+                sb.vault = "active"
+                let title = "Vault"
+
+                param1 = ["id", "name"];
+                param2 = "fish_type";
+                param3 = { "is_active": "1" };
+                var sql = this.DB.generateSelectSQL(param1, param2, param3);
+                var Types = await this.DB.runSQLQuery(sql);
+
+                let context = { types: Types, user: User[0], sidebar: sb, title: title };
+                res.render('admin/vault', context);
+
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    addVaultRecord = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "user_id": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+                var data = {};
+                let param4, param5;
+                var [blah, state, msg] = await this.VD.validVaultRecord(req);
+
+                if (state) {
+                    var email = req.session.username;
+                    param1 = "vault_records";
+                    param2 = {
+                        "prod_type": req.body.prod_type, "prod": req.body.prod, "vlt_type": req.body.vlt_type,
+                        "qty": req.body.qty, "size": req.body.size, "price": req.body.price, "remark": req.body.remark, "done_by": User[0].user_id
+                    };
+
+                    param3 = "products"
+                    param4 = { "qty_av": blah.qty_av };
+                    param5 = { "id": req.body.prod };
+
+
+                    let subj = "Created New Vault Record"
+                    let det = {
+                        "activity_type": "vault_add", "title": subj,
+                        "category": "fish_type", "activity_by": User[0].user_id + "_" + User[0].fname + User[0].lname
+                    };
+
+                    var sql = this.DB.generateInsertSQL(param1, param2, param2);
+                    await this.DB.runSQLQuery(sql);
+                    var sql = this.DB.generateUpdateSQL(param3, param4, param5);
+                    await this.DB.runSQLQuery(sql);
+
+                    this.HF.setActivity(det);
+
+                    data.success = msg.message;
+                    res.json(data)
+                } else {
+                    data.error = msg.message;
+                    res.json(data)
+                }
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    getProdByType = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "user_id": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+                var data = {};
+                param1 = ["id", "name", "sell"];
+                param2 = "products";
+                param3 = { "type": req.body.ID + "&", "qty_av": "0>" };
+                var sql = this.DB.generateSelectSQL(param1, param2, param3);
+                console.log(sql);
+                var Log = await this.DB.runSQLQuery(sql);
+
+                data.success = "Fetched all " + Log.length.toString() + " Records";
+                data.data = Log
+                res.json(data)
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    getPOS = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "username": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+                let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
+                sb.pos = "active"
+                let title = "Point of Sale"
+
+                param1 = ["*"];
+                param2 = "fish_type";
+                param3 = { "is_active": "1" };
+                var sql = this.DB.generateSelectSQL(param1, param2, param3);
+                var Types = await this.DB.runSQLQuery(sql);
+
+                param2 = "products";
+                param3 = { "is_active": "1" };
+                var sql = this.DB.generateSelectSQL(param1, param2, param3);
+                var Prods = await this.DB.runSQLQuery(sql);
+
+                let context = { prods: Prods, types: Types, user: User[0], sidebar: sb, title: title };
+                res.render('admin/pos', context);
+
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    searchProdByType = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "user_id": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+                var data = {};
+
+                let srch = req.body.srch;
+                let ID = req.body.ID;
+                console.log(ID);
+                let sql;
+                if (ID && ID != "" && ID !== undefined) {
+                    sql = `SELECT * FROM products WHERE (type = '` + ID + `') AND (name LIKE '%` + srch + `%' 
+                            OR sell LIKE '%`  + srch + `%');`;
+                } else {
+                    sql = `SELECT * FROM products WHERE (name LIKE '%` + srch + `%' OR sell LIKE '%` + srch + `%');`;
+                }
+
+                console.log(sql)
+                var Log = await this.DB.runSQLQuery(sql);
+
+                data.success = "Fetched all " + Log.length.toString() + " Records";
+                data.data = Log
+                res.json(data)
             }
             else {
                 res.redirect("/auth/login");

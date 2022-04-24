@@ -149,9 +149,14 @@ let validationClass = class {
         else if (exist) {
             return [null, false, { message: 'Product Name Input already exist in Database' }];
         }
-        else if (this.HF.isEmpty(req.body.qty) || this.HF.validInteger(req.body.qty) == false) {
+        else if (this.HF.isEmpty(req.body.qty) || this.HF.validFloat(req.body.qty) == false) {
             return [null, false, {
                 message: 'Quantity Input is not Valid'
+            }];
+        }
+        else if (this.HF.isEmpty(req.body.pieces) || this.HF.validInteger(req.body.pieces) == false) {
+            return [null, false, {
+                message: 'Pieces Input is not Valid'
             }];
         }
         else if (this.HF.isEmpty(req.body.size) || this.HF.validFloat(req.body.size) == false) {
@@ -190,6 +195,74 @@ let validationClass = class {
                 img: img, db_path: db_path, dir: dir, prod_id: id
             }
             return [extra, true, { message: msg }];
+        }
+    };
+
+    async validVaultRecord(req) {
+
+        if (!req.body.prod_type || this.HF.isEmpty(req.body.prod_type) || req.body.prod_type == "undefined") {
+            return [null, false, { message: 'No product Type was selected please go back and select a product type' }];
+        }
+        if (!req.body.prod || this.HF.isEmpty(req.body.prod) || req.body.prod == "undefined") {
+            return [null, false, { message: 'No product was selected please go back and select a product' }];
+        }
+        if (!req.body.vlt_type || this.HF.isEmpty(req.body.vlt_type) || req.body.vlt_type == "undefined") {
+            return [null, false, { message: 'No Vault Type was selected please go back and select a vault type' }];
+        }
+        else if (this.HF.isEmpty(req.body.qty) || this.HF.validInteger(req.body.qty) == false) {
+            return [null, false, {
+                message: 'Quantity Input is not Valid'
+            }];
+        }
+        else if (this.HF.isEmpty(req.body.size) || this.HF.validFloat(req.body.size) == false) {
+            return [null, false, {
+                message: 'Size Input is not Valid'
+            }]
+        }
+        else if (this.HF.isEmpty(req.body.price) || this.HF.validFloat(req.body.price) == false) {
+            return [null, false, {
+                message: 'Price Input is not Valid'
+            }]
+        }
+
+        else {
+            let msg = 'Vault Record Created successfully'
+
+            let param1 = ["qty_av", "pieces"];
+            let param2 = "products";
+            let param3 = { "id": req.body.prod };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Prod = await this.DB.runSQLQuery(sql);
+            var qty_av = Prod[0].qty_av.split(";");
+            var piec = Prod[0].pieces;
+            var carton = parseInt(qty_av[0]);
+            var pieces = ((qty_av[1]) ? parseInt(qty_av[1]) : 0);
+            let qty = parseInt(req.body.qty);
+
+            if (req.body.vlt_type == "Single") {
+                let total = ((carton * piec) + pieces)
+                if (qty > total) {
+                    return [null, false, {
+                        message: 'Quantity is more than what is available'
+                    }];
+
+                }
+                total = total - qty;
+                total = (total / piec).toString().split(".");
+                var carton = total[0]
+                var pieces = parseFloat("0." + total[1]) * piec;
+                qty_av = carton.toString() + ";" + pieces.toString();
+            } else {
+                if (qty > carton) {
+                    return [null, false, {
+                        message: 'Quantity is more than what is available'
+                    }];
+                }
+                carton = carton - qty;
+                qty_av = carton.toString() + ";" + pieces.toString()
+            }
+
+            return [{ qty_av: qty_av }, true, { message: msg }];
         }
     };
 }
