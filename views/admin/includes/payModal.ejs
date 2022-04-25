@@ -1,0 +1,79 @@
+<div class="modal fade" id="payModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="payModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content border-0 bg-gap-2">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="staticBackdropLabel">Choose payment method?</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="table-responsive h-50">
+
+                    <table class="table table-light table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Price <small class="text-muted fw-normal">(&#x20A6;60,000.00)</small>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="checkout">
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer d-inline">
+                <div class="row">
+                    <button type="button" class="btn btn-primary btn-lg col-md-5" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasCard" aria-controls="offcanvasCard"> <i class="fa fa-credit-card"></i>
+                        Card</button>
+                    <div class="col-md-2"></div>
+                    <button type="button" class="btn btn-secondary btn-lg col-md-5" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                        <i class="fa fa-money-bill-wave"></i> Cash</button>
+
+
+
+                    <!--
+                        data-bs-dismiss="modal" data-bs-target="#payModal" -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCard" aria-labelledby="offcanvasCardLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasCardLabel">Process Card</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div>
+                Some text as placeholder. In real life you can have the elements you have chosen. Like, text,
+                images, lists, etc.
+
+                <br><br>
+                <span class="fw-bold fs-5 cardy"> Total: &#x20A6;60,000.00</span>
+
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <img src="/img/pos_machine.png" class="img-fluid w-75 float-end">
+                </div>
+            </div>
+            <div class="mt-3">
+                <div class="d-grid gap-2 col-10 mx-auto">
+                    <a href="/admin/receipts" class="btn btn-primary">Done</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -47,12 +47,18 @@
                                         <% if (prods && prods.length> 0 ) { %>
                                             <div class="row mb-4">
                                             <% for( var p=0; p < prods.length; p++) { %>
-                                                <div class="col-md-3 text-center deactivated prods prods-<%= prods[p].type %> prod-<%= prods[p].id %>"" >
+                                                <div class="col-md-3 text-center deactivated prods prods-<%= prods[p].type %> prod-<%= prods[p].id %>"
+                                                    data-id="<%= prods[p].id %>" 
+                                                    data-name="<%= prods[p].name %>"
+                                                    data-info="<%=
+                                                    prods[p].img+'*'+prods[p].type+'*'+prods[p].qty+'*'+prods[p].size+'*'+prods[p].bought+'*'+prods[p].sell+'*'+prods[p].pieces
+                                                    +'*'+prods[p].type %>">
+                                            
                                                     <div class="border p-1 mb-2">
                                                         <img src="<%= ((prods[p].img && prods[p].img != '') ? prods[p].img : 'https://via.placeholder.com/300/09f/fff.png') %>"
                                                             class="img-fluid pos-item" alt="">
                                                     </div>
-                                                    <h6 class="small"><%= prods[p].name %></h6>
+                                                    <h6 class="small"></h6>
                                                     <h6 class="text-primary small">&#8358; <%= (prods[p].sell).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ) %></h6>
                                                 </div>
                                             <% } %>
@@ -88,12 +94,12 @@
                     
                     
                                 <div class="my-4 float-end">
-                                    <button type="button" class="btn btn-outline-danger rounded-0">Cancel Order</button>
-                                    <button type="button" class="btn btn-outline-secondary rounded-0 position-relative">
+                                    <button type="button" class="btn btn-outline-danger rounded-0 cancel">Cancel Order</button>
+                                    <button type="button" class="btn btn-outline-secondary rounded-0 position-relative hold-order">
                                         Hold Order
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
-                                            2
-                                            <span class="visually-hidden">unfinished orders</span>
+                                        <span class="position-absolute top-0 start-100 translate-middle hold-count badge rounded-pill bg-dark">
+                                            0
+                                            <!-- <span class="visually-hidden">unfinished orders</span> -->
                                         </span>
                                     </button>
                     
@@ -116,20 +122,9 @@
                                                         <th>Price(&#8358;)</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="orderList">
                     
-                                                    <tr class="border-bottom">
-                                                        <td><i class="fa fa-trash"></i></td>
-                                                        <td>Titus</td>
-                                                        <td><select class="form-select" aria-label="Default select example">
-                                                                <option selected disabled>Select</option>
-                                                                <option value="1">per Carton</option>
-                                                                <option value="2">per KG</option>
-                                                            </select>
-                                                        </td>
-                                                        <td><input type="number" class="form-control" /></td>
-                                                        <td>6,000.00</td>
-                                                    </tr>
+                                                    
                     
                                                 </tbody>
                                             </table>
@@ -143,31 +138,37 @@
                     
                                             <tr class="">
                                                 <td>Discounts (%)</td>
-                                                <td class="text-end"><input type="number" class="form-control" /></td>
+                                                <td class="text-end">
+                                                    <input type="number" id="discount" class="form-control" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-danger disc-error">
+                                                </td>
                                             </tr>
                                             <tr class="">
                                                 <td>Sub Total</td>
-                                                <td class="text-end">&#8358;100.00</td>
+                                                <td class="text-end sub">&#8358;0.00</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Tax (%)</td>
-                                                <td class="text-end">&#8358;1.50</td>
+                                                <td class="text-end tax" data-tax="1.5">&#8358;0.00</td>
                                             </tr>
                                         </table>
                     
                                         <table class="table table-borderless bg-white border-top m-0">
                                             <tr class="">
                                                 <td class="">Total</td>
-                                                <td class="text-end text-primary">&#8358;20,000.00</td>
+                                                <td class="text-end text-primary total">&#8358;0.00</td>
                                             </tr>
                                         </table>
                     
                                     </div>
                                 </div>
                     
-                                <button type="button" class="btn btn-success form-control my-4 rounded-0" data-bs-toggle="modal"
-                                    data-bs-target="#payModal">Pay
-                                    (&#8358;20,000.00)</button>
+                                <button type="button" id="payBtn" class="btn btn-success form-control my-4 rounded-0">
+                                    Pay
+                                </button>
                             </div>
                     
                         </div>
@@ -177,6 +178,8 @@
 
                 </div>
             </div>
+
+            <% include includes/payModal %>
 
             <script src="/js/custom/main.js"></script>
             <script type="module" src="/js/custom/validator.js"></script>
