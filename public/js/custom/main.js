@@ -97,3 +97,53 @@ function closeFullscreen() {
 //         console.log('esc');
 //     }
 // });
+
+var dt = $('#daySalesTable').DataTable({
+    "order": [[1, 'desc']]
+});
+
+
+//Date range picker
+// $('#daterange').daterangepicker({
+//     opens: 'left'
+// }, function (start, end, label) {
+//     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+// });
+
+var start = moment();
+var end = moment();
+function cb(start, end) {
+    $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+}
+
+$('#daterange').daterangepicker({
+    "startDate": moment(),
+    "endDate": moment(),
+    ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    },
+    "opens": "left"
+}, function (start, end, label) {
+    console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+});
+
+cb(start, end);
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
+
+// $("#printReportBtn").click(function () {
+//     // alert("The paragraph was clicked.");
+//     w = window.open();
+//     w.document.write($('#printReport').html());
+//     w.print();
+//     w.close();
+// });

@@ -1,0 +1,75 @@
+<% include includes/head %>
+
+    <body>
+        <% include includes/topbar %>
+            <div class="container-fluid">
+                <div class="row">
+
+                    <% include includes/sidebar %>
+
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Receipts</h1>
+                        </div>
+                    
+                        <!-- Remove the 'border' class in the div below -->
+                        <div class="receipts p-4 border">
+                            <div class="border border-dark border-2 fw-bold fs-5 text-center mb-3"><%= sett.name %></div>
+                            <div class="small">
+                                Address: <%= sett.address %>
+                            </div>
+                            <div class="small">Tel: <%= sett.phone %></div>
+                            <div class="border-top border-bottom border-dark small py-2">
+                                <span class="text-start">Date: <%= sales.date_created %></span>
+                                <!-- <span class="float-end">Time: 15:47</span> -->
+                            </div>
+                            <div class="table-responsive small">
+                                <table class="table table-borderless">
+                                    <thead class="">
+                                        <tr>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Size</th>
+                                            <th scope="col">Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% if (sales && JSON.parse(sales.items).length> 0 ) { %>
+                                    <% 
+                                            for (var i=0; i < JSON.parse(sales.items).length; i++) { 
+                                                item=JSON.parse(sales.items)
+                                    %>
+                                        <tr>
+                                            <td><%= item[i].name %></td>
+                                            <td><%= item[i].size %></td>
+                                            <td><%= item[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                        </tr>
+                                    <% } } %>
+                                       
+                                    </tbody>
+                                    <tfoot class="border-top border-bottom border-dark">
+                                        <tr class="h5 fw-bold">
+                                            <td class="text-uppercase" colspan="2">Amount</td>
+                                            <td><%= sales.subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Change</td>
+                                            <td><%= sales.trans_change.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div>FishMan No. <%= sales.receipt_no %></div>
+                        </div>
+                    
+                    
+                    </main>
+
+
+                </div>
+            </div>
+
+    <script src="/js/custom/main.js"></script>
+</body>
+
+</html>

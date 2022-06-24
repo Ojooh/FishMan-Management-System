@@ -7,6 +7,8 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
+
+            <!-- Display Product  -->
             <div class="modal-body">
 
                 <div class="table-responsive h-50">
@@ -29,6 +31,7 @@
                 </div>
 
             </div>
+            
             <div class="modal-footer d-inline">
                 <div class="row">
                     <button type="button" class="btn btn-primary btn-lg col-md-5" data-bs-toggle="offcanvas"
@@ -45,35 +48,139 @@
                         data-bs-dismiss="modal" data-bs-target="#payModal" -->
                 </div>
             </div>
+            <!-- Display product end -->
+
+            <!-- Process Card  -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCard" aria-labelledby="offcanvasCardLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasCardLabel">Process Card</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div>
+                        Some text as placeholder. In real life you can have the elements you have chosen. Like, text,
+                        images, lists, etc.
+
+                        <br><br>
+                        <span class="fw-bold fs-5 cardy"> Total: &#x20A6;60,000.00</span>
+
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <img src="/img/pos_machine.png" class="img-fluid w-75 float-end">
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <div class="d-grid gap-2 col-10 mx-auto">
+                            <button type="button" data-type="card" data-status="complete" class="btn btn-primary pay">Done</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Process card end -->
+            
+
+             <!-- Cash -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
+                aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Collect Cash</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+
+                    <div class="row">
+                        <div class="col-md-12"> 
+                            <label for="exampleFormControlInput1" class="fs-7 fw-bold">
+                                Balance Due
+                            </label><br>
+                            <span class="fw-bold fs-5 cardy"> Total: &#x20A6;60,000.00</span>
+                        </div>
+                        <div class="col-md-12"> 
+                            <label for="exampleFormControlInput1" class="fs-7 fw-bold">
+                                Amount Tendered
+                            </label><br>
+                            <div class="input-group">
+                                <input type="number" id="given" class="form-control border-start-0 text-end" placeholder="0.0"
+                                    aria-label="Tendered">
+                            </div>
+                        </div>
+                        <div class="col-md-12"> 
+                            <label for="exampleFormControlInput1" class="fs-7 fw-bold">
+                                Change
+                            </label><br>
+                            <input type="number" id="change" class="form-control text-end" id="exampleFormControlInput1"
+                                placeholder="0.0">
+                        </div>
+                    </div>
+
+                    <!-- <div class="row m-0">
+                        <div class="col-md-12 mx-auto ms-2">
+                            <button type="button" value="7" class="btn btn-outline-dark col-md-2 m-2 btn-height">7</button>
+                            <button type="button" value="9" class="btn btn-outline-dark col-md-2 m-2 btn-height">8</button>
+                            <button type="button" value="9" class="btn btn-outline-dark col-md-2 m-2 btn-height">9</button>
+                            <button type="button" value="1000"
+                                class="btn btn-dark col-md-3 m-2 btn-height">&#x20A6;1000</button>
+
+                            <button type="button" value="4" class="btn btn-outline-dark col-md-2 m-2 btn-height">4</button>
+                            <button type="button" value="5" class="btn btn-outline-dark col-md-2 m-2 btn-height">5</button>
+                            <button type="button" value="6" class="btn btn-outline-dark col-md-2 m-2 btn-height">6</button>
+                            <button type="button" value="500"
+                                class="btn btn-dark col-md-3 m-2 btn-height">&#x20A6;500</button>
+
+                            <button type="button" value="3" class="btn btn-outline-dark col-md-2 m-2 btn-height">3</button>
+                            <button type="button" value="2" class="btn btn-outline-dark col-md-2 m-2 btn-height">2</button>
+                            <button type="button" value="1" class="btn btn-outline-dark col-md-2 m-2 btn-height">1</button>
+                            <button type="button" value="200"
+                                class="btn btn-dark col-md-3 m-2 btn-height">&#x20A6;200</button>
+
+                            <button type="button" class="btn btn-danger col-md-3 m-2 btn-height">AC</button>
+                            <button type="button" value="0" class="btn btn-outline-dark col-md-2 m-2 btn-height">0</button>
+                            <button type="button" class="btn btn-outline-dark col-md-2 m-2 btn-height">.</button>
+                            <button type="button" class="btn btn-secondary col-md-2 m-2 btn-height"><i
+                                    class="fa fa-chevron-right"></i></button>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="alert">
+                              </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-8">
+                            <div class="d-grid gap-2 col-12 mx-auto">
+                                <button type="button" class="btn btn-outline-success collect">
+                                    Collect
+                                </button>
+                                
+                                <button type="button" class="btn btn-dark" data-bs-dismiss="offcanvas">
+                                    Go Back
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-4 my-auto">
+                            
+                            <button type="button" data-type="cash" class="btn btn-primary btn-lg rounded-circle py-4 pay">
+                                Done
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- Cash end -->
+
+
         </div>
     </div>
 
-    <!-- Card -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCard" aria-labelledby="offcanvasCardLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasCardLabel">Process Card</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div>
-                Some text as placeholder. In real life you can have the elements you have chosen. Like, text,
-                images, lists, etc.
+    
 
-                <br><br>
-                <span class="fw-bold fs-5 cardy"> Total: &#x20A6;60,000.00</span>
 
-            </div>
 
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <img src="/img/pos_machine.png" class="img-fluid w-75 float-end">
-                </div>
-            </div>
-            <div class="mt-3">
-                <div class="d-grid gap-2 col-10 mx-auto">
-                    <a href="/admin/receipts" class="btn btn-primary">Done</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>

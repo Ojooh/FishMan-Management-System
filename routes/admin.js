@@ -57,7 +57,34 @@ router.post('/get_prod_by_type', ah.getProdByType);
 /* GET vault */
 router.get('/pos', ah.getPOS);
 
+/* GET vault */
+router.get('/pos/receipt/:no', ah.getReceipt);
+
 /* GET search PRODUCT by type*/
 router.post('/search_prod_by_type', ah.searchProdByType);
+
+/* POST check if product qty is avalibale in vault */
+router.post('/validate_prd_qty_avl', ah.checkPrdAvl)
+
+/* POST TO ADD NEW sales record */
+router.post('/add_sales', ah.addSalesRecord);
+
+/* GET finance page. */
+router.get('/finance/:date', ah.getFinance);
+
+/* GET finance page. */
+router.get('/finance/:date/:range', ah.getFinance);
+
+
+
+
+
+
+
+/* GET vault */
+router.get('/settings', ah.getSettings);
+
+/* POST UPDATE SETTINGS*/
+router.post('/update_settings', ah.updateSettings);
 
 module.exports = router;

@@ -13,7 +13,7 @@
                         </div> -->
                         <div class="row">
                     
-                            <div class="col-md-8 vh-100 py-2">
+                            <div class="col-md-6 vh-100 py-2">
                                 <div class="card h-75 rounded-0 bg-white">
                                     <div class="card-header text-center">
                     
@@ -58,7 +58,7 @@
                                                         <img src="<%= ((prods[p].img && prods[p].img != '') ? prods[p].img : 'https://via.placeholder.com/300/09f/fff.png') %>"
                                                             class="img-fluid pos-item" alt="">
                                                     </div>
-                                                    <h6 class="small"></h6>
+                                                    <h6 class="small"><%= prods[p].name %></h6>
                                                     <h6 class="text-primary small">&#8358; <%= (prods[p].sell).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ) %></h6>
                                                 </div>
                                             <% } %>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
                     
-                            <div class="col-md-4 vh-100 py-2">
+                            <div class="col-md-6 vh-100 py-2">
                                 <div class="card h-90 rounded-0 bg-white">
                                     <div class="card-header text-center"><b>Checkout</b></div>
                                     <div class="card-body p-0 overflow-auto">
@@ -118,6 +118,7 @@
                                                         <th></th>
                                                         <th>Name</th>
                                                         <th>Type</th>
+                                                        <th>Qty</th>
                                                         <th>Size</th>
                                                         <th>Price(&#8358;)</th>
                                                     </tr>
@@ -129,10 +130,14 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                       
                     
                     
                                     </div>
                                     <div class="card-footer p-0">
+                                        <div id="error-section">
+                                        
+                                        </div>
                     
                                         <table class="table table-light table-borderless m-0 small">
                     

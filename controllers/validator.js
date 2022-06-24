@@ -11,7 +11,26 @@ let validationClass = class {
         this.DB = new DM();
     }
 
+    async validPermission(user, sett, asset) {
+        if (user && user.length > 0 && user[0].is_active == '1' && sett && sett.length > 0 && sett[0].is_active == '1') {
+            user = user[0];
+            sett = sett[0];
+            let permissions = JSON.parse(sett.perm);
+            let user_perm = permissions[user.user_type];
+
+            if (user_perm.includes(asset)) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+
+    }
+
     async validUser(req) {
+        console.log(req.body.user_type)
         let exist = await this.HF.emailExist(req.body.email, req.body.ID);
         if (req.body.ID && req.body.ID != "") {
             let param1 = ["*"];
@@ -34,7 +53,9 @@ let validationClass = class {
             return [null, false, { message: 'Email Input is not valid, already exist in database' }];
         }
         else if (!this.HF.isEmpty(req.body.phone) && this.HF.validateTel(req.body.phone) == false) {
-            swalShowError("Phone Number Input is not valid", errorClass);
+            return [null, false, {
+                message: 'Phone Number Input is not valid'
+            }];
         }
         else if (this.HF.isEmpty(req.body.gender)) {
             return [null, false, { message: 'Gender input not valid' }];
@@ -49,6 +70,7 @@ let validationClass = class {
 
             let msg = req.body.fname + ' User Profile Created successfully'
             if (req.body.type != "add") {
+
                 msg = req.body.fname + ' User Profile Updated successfully'
                 if (req.body.password == "") {
                     passhash = user[0].password;
@@ -61,6 +83,7 @@ let validationClass = class {
                     });
                 }
             } else {
+                console.log(req.body.user_type)
                 uid = uuidv4();
                 let link = req.get('host') + "/verify/" + uid;
                 let options = {
@@ -264,6 +287,83 @@ let validationClass = class {
 
             return [{ qty_av: qty_av }, true, { message: msg }];
         }
+    };
+
+    async validSettings(req) {
+        let query = {};
+
+        if (req.body.cat == "bio") {
+            if (this.HF.isEmpty(req.body.comp_name) || this.HF.validateNamey(req.body.comp_name) == false) {
+                return [null, false, { message: 'Company Name is Invalid' }];
+            } else if (this.HF.isEmpty(req.body.comp_phone) || this.HF.validateTel(req.body.comp_phone) == false) {
+                return [null, false, { message: 'Company phone is Invalid' }];
+            } else if (this.HF.isEmpty(req.body.comp_address) || this.HF.validateNamey(req.body.comp_address) == false) {
+                return [null, false, { message: 'Company address is Invalid' }];
+            } else if (req.files && this.HF.isImage(req.files.link) == false) {
+                return [null, false, { message: 'Company Logo Input is not valid, must be an image file' }];
+            } else {
+                query.name = req.body.comp_name;
+                query.phone = req.body.comp_phone;
+                query.address = req.body.comp_address;
+                let img, dir, db_path = "";
+                if (req.files) {
+                    img = req.files.link;
+                    let ext = img.name.split(".");
+                    let new_name = uuidv4() + "." + ext[ext.length - 1];
+                    dir = "public/img/logo/" + new_name;
+                    db_path = "/img/logo/" + new_name;
+                }
+                query.img = db_path;
+
+                let msg = 'Settings Profile Updated successfully'
+
+                let extra = {
+                    img: img, dir: dir, query: query
+                }
+                return [extra, true, { message: msg }];
+
+            }
+
+        }
+        else if (req.body.cat == "role") {
+            if (Object.keys(req.body.perms).length > 0) {
+                console.log(req.body.perms);
+                query.perm = req.body.perms
+
+                let msg = 'Settings Profile Updated successfully'
+
+                let extra = {
+                    query: query
+                }
+
+                return [extra, true, { message: msg }];
+            } else {
+                return [null, false, { message: 'Invalid Input for permissions' }];
+            }
+        }
+        else if (req.body.cat == "currency") {
+            if (this.HF.isEmpty(req.body.curr_name) || this.HF.validateName(req.body.curr_name) == false) {
+                return [null, false, { message: 'Currency Name is Invalid' }];
+            } else if (this.HF.isEmpty(req.body.entity)) {
+                return [null, false, { message: 'Currency Entity is Invalid' }];
+            } else if (this.HF.isEmpty(req.body.symbol) || this.HF.validateName(req.body.symbol) == false) {
+                return [null, false, { message: 'Currency Symbol is Invalid' }];
+            } else {
+                query.cur_name = req.body.curr_name
+                query.entity = req.body.entity
+                query.symbol = req.body.symbol.toUpperCase();
+
+                let msg = 'Settings Profile Updated successfully'
+
+                let extra = {
+                    query: query
+                }
+                return [extra, true, { message: msg }];
+
+            }
+
+        }
+
     };
 }
 

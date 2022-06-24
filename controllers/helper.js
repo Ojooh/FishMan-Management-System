@@ -153,7 +153,7 @@ let helperFunctions = class {
     }
 
     generateUserType(title) {
-        if (title == 'Front Desk') {
+        if (title == 'Front-Desk') {
             return "FRD";
         } else if (title == 'Vaulter') {
             return "VTR";

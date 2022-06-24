@@ -72,18 +72,25 @@
                                     <% if (edit && edit.user_type !='' ) { %>
                                         <select class="form-select" id="role" aria-label="Default select example">
                                             <option value="<%= edit.user_type %>" selected><%= edit.user_type %></option>
-                                            <option value="Front Desk">Front Desk</option>
-                                            <option value="Vaulter">Vaulter</option>
+                                        <% if (sett.user_types && sett.user_types.length> 0) { %>
+                                            <% for (var n=0; n < sett.user_types.length; n++) { %>
+                                            <option value="<%= sett.user_types[n]; %>"><%= sett.user_types[n]; %></option>
+                                            <% } %>
+                                        <% } %>
+                                            <!-- <option value="Vaulter">Vaulter</option>
                                             <option value="Accountant">Accountant</option>
-                                            <option value="Admin">Admin</option>
+                                            <option value="Admin">Admin</option> -->
                                         </select>
                                     <% } else { %>
                                         <select class="form-select" id="role" aria-label="Default select example">
                                             <option selected disabled>Select</option>
-                                            <option value="Front Desk">Front Desk</option>
-                                            <option value="Vaulter">Vaulter</option>
-                                            <option value="Accountant">Accountant</option>
-                                            <option value="Admin">Admin</option>
+                                        <% if (sett.user_types && sett.user_types.length> 0) { %>
+                                            <% for (var n=0; n < sett.user_types.length; n++) { %>
+                                                <option value="<%= sett.user_types[n]; %>">
+                                                    <%= sett.user_types[n]; %>
+                                                </option>
+                                            <% } %>
+                                        <% } %>
                                         </select>
                                     <% } %>
                 

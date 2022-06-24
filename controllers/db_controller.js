@@ -90,7 +90,7 @@ let DatabaseManager = class {
 
         Object.keys(obj).forEach(function (key) {
             let j = obj[key];
-            set = set + key + ' = "' + j + '",';
+            set = set + key + " = '" + j + "',";
         });
         set = set.slice(0, -1);
 
@@ -119,13 +119,25 @@ let DatabaseManager = class {
         let value = '(';
 
         Object.keys(obj).forEach(function (key) {
-            col = col + "`" + key + "`,";
+            if (key[key.length - 1] == "~") {
+                const val = key.slice(0, -1)
+                col = col + "`" + val + "`,";
+            } else {
+                col = col + "`" + key + "`,";
+            }
+
         });
         col = col.slice(0, -1) + ")";
 
         Object.keys(param3).forEach(function (key) {
-            let j = param3[key];
-            value = value + '"' + j + '", ';
+            if (key[key.length - 1] == "~") {
+                let j = param3[key];
+                value = value + j + ', ';
+            } else {
+                let j = param3[key];
+                value = value + '"' + j + '", ';
+            }
+
         });
 
         value = value.slice(0, - 2) + ")";

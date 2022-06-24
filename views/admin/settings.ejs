@@ -1,0 +1,190 @@
+<% include includes/head %>
+
+    <body>
+        <% include includes/topbar %>
+            <div class="container-fluid">
+                <div class="row">
+
+                    <% include includes/sidebar %>
+
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Settings</h1>
+                        </div>
+                    
+                        <div class="">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="first-tab" aria-current="page" href="#" data-bs-toggle="tab"
+                                        data-bs-target="#first" role="tab" aria-controls="first" aria-selected="true">General</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="second-tab" href="#" data-bs-toggle="tab" data-bs-target="#second" role="tab"
+                                        aria-controls="second" aria-selected="true">Roles</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="third-tab" href="#" data-bs-toggle="tab" data-bs-target="#third" role="tab"
+                                        aria-controls="third" aria-selected="true">Currency</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link disabled" id="fourth-tab" data-bs-toggle="tab" data-bs-target="#fourth" role="tab"
+                                        aria-controls="fourth" aria-selected="true">Backup</a>
+                                </li>
+                            </ul>
+                    
+                            <div class="tab-content border-start border-end border-bottom mb-3" id="myTabContent">
+                    
+                    
+                    
+                    
+                                <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+                                    <form class="py-4 px-sm-5" action="">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="mb-3">
+                                                    <label for="company_name" class="form-label">
+                                                        Company Name
+                                                    </label>
+                                                    <input type="text" class="form-control" id="company_name"
+                                                        placeholder="Type here" aria-describedby="help1" value="<%= sett.name %>">
+                                                    <div id="help1" class="form-text">Lorem ishup ishup orem ishup shup.</div>
+                                                </div>
+                    
+                                                <div class="mb-3">
+                                                    <label for="company_phone" class="form-label">
+                                                        Mobile Number
+                                                    </label>
+                                                    <input type="tel" class="form-control" id="company_phone"
+                                                        placeholder="Type here" aria-describedby="help2" value="<%= sett.phone %>">
+                                                    <div id="help2" class="form-text">Lorem ishup ishup orem ishup shup.</div>
+                                                </div>
+                    
+                                                <div class="mb-3">
+                                                    <label for="address" class="form-label">Address</label>
+                                                    <textarea class="form-control" id="address" rows="3"
+                                                        aria-describedby="help3"><%= sett.address %></textarea>
+                                                    <div id="help3" class="form-text">Lorem ishup ishup orem ishup shup.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlInput1" class="form-label">
+                                                        System Logo
+                                                    </label>
+                                                    <div class="bg-secondary rounded" style="width: 200px; height: 200px;">
+                                                        <img id="imgDisplay" class="img-fluid" src="<%= ((sett.img && sett.img != '') ? sett.img : sett.img) %>" />
+                                                    </div>
+                                                    <input type="file" class="form-control mt-2" id="saveImg" onchange="loadFile(event)">
+                                                    
+                                                    <div id="error-sett-bio" class="w-100">
+
+                                                    </div>
+                                                    <button type="button" data-status="bio" class="btn btn-success mt-4 update">Update</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                    
+                    
+                    
+                    
+                                <div class="tab-pane fade p-3" id="second" role="tabpanel" aria-labelledby="second-tab">
+                    
+                                    <div class="mb-3">
+                                        <span class="ms-sm-3 h5">Role Permission</span>
+                    
+                                        <button type="button" class="btn btn-sm btn-outline-secondary float-end"><i
+                                                class="fa-solid fa-plus"></i> Add</button>
+                                    </div>
+                    
+                                    <table class="table table-bordered">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Roles</th>
+                                                <th scope="col">Modules</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rolesy" data-perm="<%= sett.perm %>" class="border-top-0">
+                                        <% if (sett.user_types && sett.user_types.length > 0) { %>
+                                            <% for (var n = 0; n < sett.user_types.length; n++) { %>
+                                            <tr id="<%= sett.user_types[n]; %>">
+                                                <th scope="row"><%= n + 1; %></th>
+                                                <td><%= sett.user_types[n]; %></td>
+                                                <% if (sett.modules && sett.modules.length> 0) { %>
+                                                <td>
+                                                    <% for (var m=0; m < sett.modules.length; m++) { %>
+
+                                                    <input type="checkbox" class="btn-check modules <%= sett.modules[m]; %>" data-value="<%= sett.modules[m]; %>" data-user="<%= sett.user_types[n]; %>" id="<%= sett.user_types[n] + '-' + sett.modules[m]; %>" autocomplete="off">
+                                                    <label class="btn btn-outline-primary my-1  module" for="<%= sett.user_types[n] + '-' + sett.modules[m]; %>">
+                                                        <%= sett.modules[m]; %>
+                                                    </label>
+
+                                                    <% } %>
+                                                </td>
+                                                <% } %>
+                                                    
+                                            </tr>
+                                            <% } %>
+                                        <% } %>
+                                            
+                                        </tbody>
+                                    </table>
+                                    <div id="error-sett-role" class="w-100"></div>
+
+                                    <button type="button" data-status="role" class="btn btn-success update">Update</button>
+                                </div>
+                    
+                    
+                    
+                                <div class="tab-pane fade" id="third" role="tabpanel" aria-labelledby="third-tab">
+                                    <form action="" class="p-5">
+                                        <div class="mb-3">
+                                            <label for="currency_name" class="form-label">Currency Name</label>
+                                            <input type="text" class="form-control" id="currency_name" placeholder="e.g Naira" value="<%= sett.cur_name %>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="entity" class="form-label">HTML Entity</label>
+                                            <input type="text" class="form-control" id="entity" placeholder="e.g &#8358;" value="<%= sett.entity %>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="symbol" class="form-label">Symbol</label>
+                                            <input type="text" class="form-control" id="symbol" placeholder="e.g NGN" value="<%= sett.symbol; %>">
+                                        </div>
+
+                                        
+                                        <div id="error-sett-currency" class="w-100"></div>
+
+                                        <button type="button" data-status="currency" class="btn btn-success px-5 mt-3 update">Save</button>
+                                    </form>
+                                </div>
+                    
+                    
+                    
+                                <div class="tab-pane fade" id="fourth" role="tabpanel" aria-labelledby="fourth-tab"></div>
+                            </div>
+                    
+                    
+                        </div>
+                    
+                    </main>
+
+                </div>
+            </div>
+
+            <script>
+                var loadFile = function (event) {
+                    var image = document.getElementById("imgDisplay");
+                    image.src = URL.createObjectURL(event.target.files[0]);
+                };
+            </script>
+
+            <script src="/js/custom/main.js"></script>
+            <script type="module" src="/js/custom/validator.js"></script>
+            <script type="module" src="/js/custom/helper.js"></script>
+            <script type="module" src="/js/custom/script_6.js"></script>
+    </body>
+
+    </html>

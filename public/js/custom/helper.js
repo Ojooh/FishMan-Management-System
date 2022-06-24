@@ -291,12 +291,16 @@ const validYTLink = (info) => {
     return false;
 }
 
+
 // function to display error
 const showError = (e_title, e_msg, e_class) => {
     var error = document.getElementById(e_class);
+    var alert = document.getElementsByClassName('alert')[0];
+    if (alert) {
+        alert.classList.remove('show');
+    }
     error.innerHTML = ``;
-    console.log(e_class);
-    console.log(error);
+    error.innerHTML = ``;
     error.innerHTML = `  <div class="alert alert-` + e_title + ` alert-dismissible fade show" role="alert">
                                     <strong>` + e_title.toUpperCase() + `!</strong> ` + e_msg + `
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -304,12 +308,12 @@ const showError = (e_title, e_msg, e_class) => {
                                     </button>
                                 </div>`;
 
-    console.log(error);
+    // console.log(error);
     setTimeout(function () {
         var alert = document.getElementsByClassName('alert')[0];
         alert.classList.remove('show');
         error.innerHTML = ``;
-    }, 5000);
+    }, 50000);
 };
 
 const swalShowError = (e_msg, e_class) => {

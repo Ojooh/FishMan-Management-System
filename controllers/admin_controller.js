@@ -24,13 +24,23 @@ let adminControllerClass = class {
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1') {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'dash');
+
+
+            if (perm) {
                 let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
                 sb.dash = "active"
                 let title = "Dashboard";
 
 
-                let context = { user: User[0], sidebar: sb, title: title };
+                let context = { sett: Setts[0], user: User[0], sidebar: sb, title: title };
                 res.render('admin/index', context);
 
             }
@@ -52,7 +62,17 @@ let adminControllerClass = class {
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && User[0].user_type == "Admin") {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'users');
+
+
+            if (perm) {
                 let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
                 sb.usrs = "active"
                 let title = "User Management"
@@ -68,10 +88,13 @@ let adminControllerClass = class {
                     Users[f].last_login = moment(new Date(item.last_login)).format('MMMM Do, YYYY h:mma');
                     Users[f].date_join = moment(new Date(item.date_join)).format('MMMM Do, YYYY h:mma');
                     f = f + 1;
-                })
+                });
+
+                Setts[0]["user_types"] = JSON.parse(Setts[0]["user_types"]);
+                Setts[0]["modules"] = JSON.parse(Setts[0]["modules"]);
 
 
-                let context = { edit: "", usrs: Users, user: User[0], sidebar: sb, title: title };
+                let context = { edit: "", sett: Setts[0], usrs: Users, user: User[0], sidebar: sb, title: title };
                 res.render('admin/users', context);
 
             }
@@ -93,7 +116,17 @@ let adminControllerClass = class {
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && User[0].user_type == "Admin") {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'users');
+
+
+            if (perm) {
                 let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
                 sb.usrs = "active"
                 let title = "User Management";
@@ -119,7 +152,7 @@ let adminControllerClass = class {
                 var edit = await this.DB.runSQLQuery(sql);
 
 
-                let context = { edit: edit[0], usrs: Users, user: User[0], sidebar: sb, title: title };
+                let context = { edit: edit[0], sett: Setts[0], usrs: Users, user: User[0], sidebar: sb, title: title };
                 res.render('admin/users', context);
 
             }
@@ -234,7 +267,17 @@ let adminControllerClass = class {
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'stock');
+
+
+            if (perm) {
                 let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
                 sb.stock = "active"
                 let title = "Restock"
@@ -252,7 +295,9 @@ let adminControllerClass = class {
                             WHERE products.type = fish_type.id`
                 var Prods = await this.DB.runSQLQuery(sql);
 
-                let context = { edit: "", prods: Prods, types: Types, user: User[0], sidebar: sb, title: title };
+                // Setts[0]["perm"] = JSON.parse(Setts[0]["perm"]);
+
+                let context = { edit: "", prods: Prods, types: Types, sett: Setts[0], user: User[0], sidebar: sb, title: title };
                 res.render('admin/stock', context);
 
             }
@@ -270,11 +315,21 @@ let adminControllerClass = class {
             var email = req.session.username;
             let param1 = ["*"];
             let param2 = "users";
-            let param3 = { "email": email + "/", "user_id": email };
+            let param3 = { "email": email + "/", "username": email };
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'stock');
+
+
+            if (perm) {
                 var data = {};
                 var [blah, state, msg] = await this.VD.validType(req);
 
@@ -324,11 +379,21 @@ let adminControllerClass = class {
             var email = req.session.username;
             let param1 = ["*"];
             let param2 = "users";
-            let param3 = { "email": email + "/", "user_id": email };
+            let param3 = { "email": email + "/", "username": email };
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'stock');
+
+
+            if (perm) {
                 var data = {};
                 var [blah, state, msg] = await this.VD.validType(req);
                 let param1 = ["*"];
@@ -389,11 +454,21 @@ let adminControllerClass = class {
             var email = req.session.username;
             let param1 = ["*"];
             let param2 = "users";
-            let param3 = { "email": email + "/", "user_id": email };
+            let param3 = { "email": email + "/", "username": email };
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'stock');
+
+
+            if (perm) {
                 var data = {};
                 var [blah, state, msg] = await this.VD.validProduct(req);
 
@@ -457,11 +532,21 @@ let adminControllerClass = class {
             var email = req.session.username;
             let param1 = ["*"];
             let param2 = "users";
-            let param3 = { "email": email + "/", "user_id": email };
+            let param3 = { "email": email + "/", "username": email };
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'stock');
+
+
+            if (perm) {
                 var data = {};
                 let param1 = ["*"];
                 let param2 = "products_log";
@@ -493,11 +578,21 @@ let adminControllerClass = class {
             var email = req.session.username;
             let param1 = ["*"];
             let param2 = "users";
-            let param3 = { "email": email + "/", "user_id": email };
+            let param3 = { "email": email + "/", "username": email };
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'stock');
+
+
+            if (perm) {
                 var data = {};
                 var [blah, state, msg] = await this.VD.validProduct(req);
                 let param1 = ["*"];
@@ -582,7 +677,17 @@ let adminControllerClass = class {
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'vault');
+
+
+            if (perm) {
                 let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
                 sb.vault = "active"
                 let title = "Vault"
@@ -593,7 +698,7 @@ let adminControllerClass = class {
                 var sql = this.DB.generateSelectSQL(param1, param2, param3);
                 var Types = await this.DB.runSQLQuery(sql);
 
-                let context = { types: Types, user: User[0], sidebar: sb, title: title };
+                let context = { types: Types, sett: Setts[0], user: User[0], sidebar: sb, title: title };
                 res.render('admin/vault', context);
 
             }
@@ -611,11 +716,21 @@ let adminControllerClass = class {
             var email = req.session.username;
             let param1 = ["*"];
             let param2 = "users";
-            let param3 = { "email": email + "/", "user_id": email };
+            let param3 = { "email": email + "/", "username": email };
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'vault');
+
+
+            if (perm) {
                 var data = {};
                 let param4, param5;
                 var [blah, state, msg] = await this.VD.validVaultRecord(req);
@@ -667,11 +782,21 @@ let adminControllerClass = class {
             var email = req.session.username;
             let param1 = ["*"];
             let param2 = "users";
-            let param3 = { "email": email + "/", "user_id": email };
+            let param3 = { "email": email + "/", "username": email };
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'vault');
+
+
+            if (perm) {
                 var data = {};
                 param1 = ["id", "name", "sell"];
                 param2 = "products";
@@ -702,7 +827,17 @@ let adminControllerClass = class {
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'pos');
+
+
+            if (perm) {
                 let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
                 sb.pos = "active"
                 let title = "Point of Sale"
@@ -718,8 +853,58 @@ let adminControllerClass = class {
                 var sql = this.DB.generateSelectSQL(param1, param2, param3);
                 var Prods = await this.DB.runSQLQuery(sql);
 
-                let context = { prods: Prods, types: Types, user: User[0], sidebar: sb, title: title };
+                let context = { prods: Prods, types: Types, sett: Setts[0], user: User[0], sidebar: sb, title: title };
                 res.render('admin/pos', context);
+
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    getReceipt = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "username": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'pos');
+
+
+            if (perm) {
+                let no = req.params.no
+                let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
+                sb.pos = "active"
+                let title = "Point of Sale"
+
+                param1 = ["*"];
+                param2 = "sales";
+                param3 = { "receipt_no": no };
+                var sql = this.DB.generateSelectSQL(param1, param2, param3);
+                var Sales = await this.DB.runSQLQuery(sql);
+
+                let f = 0;
+                Sales.forEach((item) => {
+                    Sales[f].date_created = moment(new Date(item.date_created)).format('MMMM Do, YYYY h:mma');
+                    f = f + 1;
+                });
+
+                let context = { sales: Sales[0], sett: Setts[0], user: User[0], sidebar: sb, title: title };
+                res.render('admin/receipt', context);
 
             }
             else {
@@ -736,11 +921,21 @@ let adminControllerClass = class {
             var email = req.session.username;
             let param1 = ["*"];
             let param2 = "users";
-            let param3 = { "email": email + "/", "user_id": email };
+            let param3 = { "email": email + "/", "username": email };
             var sql = this.DB.generateSelectSQL(param1, param2, param3);
             var User = await this.DB.runSQLQuery(sql);
 
-            if (User && User.length > 0 && User[0].is_active == '1' && (User[0].user_type == "Admin" || User[0].user_type == "Front Desk")) {
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'pos');
+
+
+            if (perm) {
                 var data = {};
 
                 let srch = req.body.srch;
@@ -760,6 +955,370 @@ let adminControllerClass = class {
                 data.success = "Fetched all " + Log.length.toString() + " Records";
                 data.data = Log
                 res.json(data)
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    checkPrdAvl = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "username": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'pos');
+
+
+            if (perm) {
+                var data = {};
+                let qty = req.body.qty;
+                let ID = req.body.ID;
+                let typ = req.body.typ;
+                let sql;
+                if (ID && ID != "" && ID !== undefined) {
+                    param1 = ["*"];
+                    param2 = "vault_records";
+                    param3 = { "is_active": "1&", "prod": ID + "&", "vlt_type": typ };
+                    let param4 = `ORDER BY date_created DESC LIMIT 1`;
+                    sql = this.DB.generateSelectSQL(param1, param2, param3, param4);
+                    console.log(sql);
+                    var Record = await this.DB.runSQLQuery(sql);
+
+                    if (Record && Record.length > 0 && Record[0].qty >= qty) {
+                        data.success = "Fetched all " + Record.length.toString() + " Records";
+                        data.vlt_id = Record[0].id
+                        data.avl = true;
+                    } else {
+                        data.success = "Fetched all " + Record.length.toString() + " Records quantity is not available";
+                        data.avl = false;
+                    }
+                } else {
+                    data.error = "Could not find any product record in vault";
+                    data.avl = false;
+                }
+                res.json(data)
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    getSettings = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "username": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'settings');
+
+
+            if (perm) {
+                let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
+                sb.sett = "active"
+                let title = "Settings"
+
+                Setts[0]["user_types"] = JSON.parse(Setts[0]["user_types"]);
+                Setts[0]["modules"] = JSON.parse(Setts[0]["modules"]);
+
+
+                let context = { sett: Setts[0], user: User[0], sidebar: sb, title: title };
+                res.render('admin/settings', context);
+
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    updateSettings = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "username": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'settings');
+
+
+            if (perm) {
+                var data = {};
+                var [blah, state, msg] = await this.VD.validSettings(req);
+
+                if (state) {
+                    if (req.files && req.files !== undefined && req.files.link && Setts[0].img && Setts[0].img != "") {
+                        let url = path.join(__dirname, '../', 'public') + Setts[0].img;
+                        console.log(url);
+                        fs.unlink(url, function (err) {
+                            if (err) throw err;
+                            console.log('File deleted!');
+                        });
+                    }
+                    param1 = "settings";
+                    param3 = { "id": Setts[0].id }
+                    if (req.files && req.files !== undefined && req.files.link && req.files.link !== undefined && req.files.link != "") {
+                        param2 = blah.query;
+                        blah.img.mv(blah.dir);
+                    } else {
+                        param2 = blah.query;
+
+                    }
+
+
+                    let subj = "Update Settings";
+                    let det = {
+                        "activity_type": "settings_update", "title": subj,
+                        "category": "products", "activity_by": User[0].user_id + "_" + User[0].fname + User[0].lname
+                    };
+                    param2["created_by"] = User[0].user_id + "_" + User[0].fname + User[0].lname
+
+                    var sql = this.DB.generateUpdateSQL(param1, param2, param3);
+                    console.log(sql)
+                    await this.DB.runSQLQuery(sql);
+
+
+                    this.HF.setActivity(det);
+
+                    data.success = msg.message;
+                    res.json(data)
+                } else {
+                    data.error = msg.message;
+                    res.json(data)
+                }
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    addSalesRecord = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "username": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'pos');
+
+
+            if (perm) {
+                var data = {};
+                var email = req.session.username;
+                const body = req.body;
+                console.log(JSON.stringify(body.order));
+                param1 = "sales";
+                param2 = {
+                    "receipt_no": await this.HF.generateUID("RCP", "sales", "4"),
+                    "items~": JSON.stringify(body.order), "total": body.total, "subtotal": body.subTotal,
+                    "tax": body.tax, "discount": body.discount, "amt_rcvd": body.given,
+                    "trans_change": body.change, "remark": body.remark, "state": body.state,
+                    "trans_by": User[0].user_id, "payment_type": body.payment_type
+                };
+
+
+                let subj = "Created New Sales Record"
+                let det = {
+                    "activity_type": "sales_add", "title": subj,
+                    "category": "pos", "activity_by": User[0].user_id + "_" + User[0].fname + User[0].lname
+                };
+
+                var sql = this.DB.generateInsertSQL(param1, param2, param2);
+                console.log(sql);
+                await this.DB.runSQLQuery(sql);
+
+                const vl = this.DB
+
+                JSON.parse(body.det).forEach(async function (item) {
+                    console.log(item);
+                    var sql = vl.generateSelectSQL(['*'], 'vault_records', { 'id': item.vlt_id });
+                    var Vault = await vl.runSQLQuery(sql);
+                    var new_qty = (parseInt(Vault[0].qty) - parseInt(item.qty));
+                    var new_size = (parseInt(Vault[0].size) - parseInt(item.size));
+                    let update
+                    if (new_qty < 0) {
+                        new_qty = 0
+                        update = { is_active: "0", 'qty': new_qty, 'size': new_size };
+                    } else {
+                        update = { 'qty': new_qty, 'size': new_size };
+                    }
+
+                    var sql = vl.generateUpdateSQL('vault_records', update, { 'id': Vault[0].id });
+                    await vl.runSQLQuery(sql);
+
+                });
+
+
+                this.HF.setActivity(det);
+
+                data.success = "Transaction Recorded Successfully";
+                data.receipt_no = param2["receipt_no"];
+                res.json(data)
+
+            }
+            else {
+                res.redirect("/auth/login");
+            }
+        }
+        else {
+            res.redirect("/auth/login");
+        }
+    };
+
+    getFinance = async (req, res) => {
+        if (req.session.username && req.session.loggedin) {
+            var email = req.session.username;
+            let param1 = ["*"];
+            let param2 = "users";
+            let param3 = { "email": email + "/", "username": email };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var User = await this.DB.runSQLQuery(sql);
+
+
+            param1 = ["*"];
+            param2 = "settings";
+            param3 = { "is_active": "1" };
+            var sql = this.DB.generateSelectSQL(param1, param2, param3);
+            var Setts = await this.DB.runSQLQuery(sql);
+
+            let perm = await this.VD.validPermission(User, Setts, 'finances');
+
+
+            if (perm) {
+                let date = req.params.date;
+                let range = (req.params.range && req.params.range != '' ? req.params.range.split(",") : undefined);
+                let sql, sql2, sql3, from_date, to_date;
+                console.log(date);
+                let sb = { dash: "", vault: "", pos: "", fin: "", stock: "", usrs: "" };
+                sb.fin = "active"
+                let title = "Finances";
+                let cart_vlt_total_sql = `SELECT SUM(QTY) AS qty_total, COUNT(*) AS count FROM vault_records WHERE is_active = 1 AND vlt_type = "Carton"`
+                let cart_vlt_sql = `SELECT vault_records.prod, vault_records.vlt_type, vault_records.qty, products.name FROM vault_records  INNER JOIN products ON vault_records.prod = products.id WHERE vault_records.is_active = 1 AND vault_records.vlt_type = "Carton"`
+                let singl_vlt_total_sql = `SELECT SUM(QTY) AS qty_total, COUNT(*) AS count FROM vault_records WHERE is_active = 1 AND vlt_type = "Single"`;
+                let singl_vlt_sql = `SELECT vault_records.prod, vault_records.vlt_type, vault_records.qty, products.name FROM vault_records  INNER JOIN products ON vault_records.prod = products.id WHERE vault_records.is_active = 1 AND vault_records.vlt_type = "Single"`;
+                let stock = `SELECT * FROM products WHERE is_active = 1`;
+
+                if (date == 'today') {
+                    sql = `SELECT COUNT(*) AS count, SUM(subtotal) AS total FROM sales WHERE date_created BETWEEN DATE_SUB(NOW(),INTERVAL 1 DAY) AND NOW()`;
+                }
+                else if (date == 'week') {
+                    sql = `SELECT COUNT(*) AS count, SUM(subtotal) AS total FROM sales WHERE date_created BETWEEN DATE_SUB(NOW(),INTERVAL 1 WEEK) AND NOW()`;
+                }
+                else if (date == 'month') {
+                    sql = `SELECT COUNT(*) AS count, SUM(subtotal) AS total FROM sales WHERE date_created BETWEEN DATE_SUB(NOW(),INTERVAL 1 MONTH) AND NOW()`;
+                }
+                else if (date == 'year') {
+                    sql = `SELECT COUNT(*) AS count, SUM(subtotal) AS total FROM sales WHERE date_created BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()`;
+                }
+
+                if (range && range.length > 1) {
+                    sql2 = `SELECT * FROM sales WHERE date_created BETWEEN '` + range[0] + ` 00:00:00 ' AND '` + range[1] + ` 23:59:00';`;
+                    sql3 = `SELECT SUM(subtotal) AS total FROM sales WHERE date_created BETWEEN '` + range[0] + ` 00:00:00 ' AND '` + range[1] + ` 23:59:00';`;
+                    from_date = moment(new Date(range[0])).format('MMMM Do, YYYY h:mma');
+                    to_date = moment(new Date(range[1])).format('MMMM Do, YYYY h:mma');
+                } else {
+                    sql2 = `SELECT * FROM sales WHERE date_created BETWEEN DATE_SUB(NOW(),INTERVAL 1 DAY) AND NOW()`;
+                    sql3 = `SELECT SUM(subtotal) AS total FROM sales WHERE date_created BETWEEN DATE_SUB(NOW(),INTERVAL 1 DAY) AND NOW()`;
+                    from_date = moment(new Date()).format('MMMM Do, YYYY h:mma');
+                    to_date = moment(new Date()).format('MMMM Do, YYYY h:mma');
+                }
+
+                console.log(sql2);
+
+
+                var Report = await this.DB.runSQLQuery(sql);
+                var Sales = await this.DB.runSQLQuery(sql2);
+                var Total = await this.DB.runSQLQuery(sql3);
+                var CartT = await this.DB.runSQLQuery(cart_vlt_total_sql);
+                var Cart = await this.DB.runSQLQuery(cart_vlt_sql);
+                var SinglT = await this.DB.runSQLQuery(singl_vlt_total_sql);
+                var Singl = await this.DB.runSQLQuery(singl_vlt_sql);
+                var Stock = await this.DB.runSQLQuery(stock);
+                var crt = 0;
+                var sgl = 0;
+
+                let f = 0;
+                Sales.forEach((item) => {
+                    Sales[f].date_created = moment(new Date(item.date_created)).format('MMMM Do, YYYY h:mma');
+                    f = f + 1;
+                });
+
+
+
+                if (Stock && Stock.length > 0) {
+                    Stock.forEach(function (item) {
+                        if (item.qty_av && item.qty_av != 0) {
+                            var s = item.qty_av.split(";");
+                            crt += parseInt(s[0]);
+                            sgl += ((s && s.length > 1) ? parseInt(s[1]) : 0);
+                        } else {
+                            crt += parseInt(item.qty);
+                        }
+                    })
+                }
+
+
+                let context = {
+                    total: Total[0], sales: Sales, stock: Stock, crt: crt, sgl: sgl, cart_total: CartT[0], carts: Cart,
+                    single_total: SinglT[0], single: Singl,
+                    report: Report[0], sett: Setts[0], user: User[0],
+                    sidebar: sb, title: title, param: 'today', from_date, to_date
+                };
+                res.render('admin/finances', context);
+
             }
             else {
                 res.redirect("/auth/login");

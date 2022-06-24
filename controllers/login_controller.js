@@ -15,7 +15,14 @@ let authController = class {
     }
 
     // Method to render login page
-    loginPage(req, res) {
+    async loginPage(req, res) {
+        // let passhash = await new Promise((resolve, reject) => {
+        //     bcrypt.hash("password4", 10, function (err, hash) {
+        //         if (err) reject(err)
+        //         resolve(hash)
+        //     });
+        // });
+        // console.log(passhash);
         res.render('auth/login');
     };
 
@@ -40,6 +47,7 @@ let authController = class {
                     let param2 = { "last_login": datetime };
                     let param3 = { "user_id": User[0].user_id };
                     var sql = this.DB.generateUpdateSQL(param1, param2, param3);
+                    console.log(sql);
                     await this.DB.runSQLQuery(sql);
 
                     req.session.loggedin = true;
@@ -89,6 +97,7 @@ let authController = class {
                     let det;
 
                     if (req.body.type == "add") {
+                        console.log(req.body.user_type)
                         let param2 = {
                             "user_id": blah.id, "fname": req.body.fname, "lname": req.body.lname,
                             "username": req.body.username, "email": req.body.email, "phone": req.body.phone,
@@ -97,6 +106,7 @@ let authController = class {
                         };
                         let param3 = param2;
                         var sql = this.DB.generateInsertSQL(param1, param2, param3);
+                        console.log(sql)
 
                         let subj = "Registered " + req.body.username + " " + req.body.user_type + " User"
                         det = {
