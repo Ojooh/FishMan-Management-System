@@ -239,8 +239,9 @@
                                                                 src="https://via.placeholder.com/300/09f/fff.png"
                                                                 height="100" width="100" class="img-thumbnail" alt="">
                                                         </li>
-                                                        <li class="list-group-item">Price: 6,500</li>
-                                                        <li class="list-group-item">Quantity: 20</li>
+                                                        <li class="list-group-item">Buy price(Carton): 6,500</li>
+                                                        <li class="list-group-item">Qty of cartons: 20</li>
+                                                        <li class="list-group-item">Total slates: 60</li>
                                                         <li class="list-group-item">Size: 20kg</li>
                                                     </ul>
                                                 </td>
@@ -261,9 +262,9 @@
                                                                 <tr>
                                                                     <th scope="col">#</th>
                                                                     <th scope="col">Date</th>
-                                                                    <th scope="col">Qty</th>
-                                                                    <th scope="col">Size(kg)</th>
-                                                                    <th scope="col">Price(&#8358;)</th>
+                                                                    <th scope="col">Qty(carton)</th>
+                                                                    <th scope="col">Slates(per carton)</th>
+                                                                    <th scope="col">Buy price/carton(&#8358;)</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -271,14 +272,14 @@
                                                                     <th scope="row">1</th>
                                                                     <td>03/02/2020</td>
                                                                     <td>540</td>
-                                                                    <td>23</td>
+                                                                    <td>3</td>
                                                                     <td>5000</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th scope="row">2</th>
                                                                     <td>03/02/2020</td>
                                                                     <td>540</td>
-                                                                    <td>23</td>
+                                                                    <td>4</td>
                                                                     <td>5000</td>
                                                                 </tr>
                                                             </tbody>
@@ -309,10 +310,10 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Type</th>
-                                <th scope="col">Price (&#8358;)</th>
-                                <th scope="col">Qty</th>
-                                <th scope="col">Size (kg)</th>
-                                <th scope="col">Avbl. Vault</th>
+                                <th scope="col">Buy price/carton (&#8358;)</th>
+                                <th scope="col">Qty of carton</th>
+                                <th scope="col">Slate(per carton)</th>
+                                <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -322,26 +323,26 @@
                                 <td>Fish</td>
                                 <td>5000</td>
                                 <td>430</td>
-                                <td>20</td>
-                                <td>300</td>
+                                <td>4</td>
+                                <td class="bg-success text-white text-center">Full</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>Croaker</td>
+                                <td>Fish</td>
+                                <td>2400</td>
+                                <td>10</td>
+                                <td>5</td>
+                                <td class="bg-danger text-white text-center">Low</td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Otto</td>
+                                <td>Catfish</td>
+                                <td>@Fish</td>
+                                <td>7200</td>
+                                <td>50</td>
+                                <td>3</td>
+                                <td class="bg-warning text-white text-center">Warning</td>
                             </tr>
                         </tbody>
                     </table>
@@ -375,7 +376,7 @@
                                         <label for="inputType" class="col-sm-2 col-form-label">Type</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="inputType"
-                                                placeholder="Text here...">
+                                                placeholder="Enter product type">
                                         </div>
                                     </div>
 
@@ -418,7 +419,7 @@
                                         <label for="inputType" class="col-sm-2 col-form-label">Type</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="inputType"
-                                                placeholder="Text here..." value="Fish">
+                                                placeholder="Enter product type" value="Fish">
                                         </div>
                                     </div>
 
@@ -426,7 +427,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-success">Update</button>
+                                <button type="button" class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </div>
@@ -459,39 +460,47 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Type</label>
                                         <input type="text" class="form-control" id="nameInput" value="Fish"
-                                            placeholder="Product Type" disabled readonly required>
+                                            placeholder="Enter product type" disabled readonly required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="nameInput"
-                                            placeholder="Product Name here...">
+                                            placeholder="Enter product name">
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Quantity</label>
-                                        <input type="number" class="form-control" id="priceInput"
-                                            placeholder="30 cartons">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Size (kg)</label>
-                                        <input type="number" class="form-control" id="priceInput" placeholder="20.00kg">
-                                    </div>
-
 
                                     <div class="mb-3 row">
                                         <div class="col-md-6">
-                                            <label for="exampleFormControlInput1" class="form-label">Bought Price
-                                                (&#8358;/kg)</label>
+                                            <label for="exampleFormControlInput1" class="form-label">Qty of
+                                                cartons</label>
                                             <input type="number" class="form-control" id="priceInput"
-                                                placeholder="&#8358;5,000.00 per kg">
+                                                placeholder="Enter no. of total cartons">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="exampleFormControlInput1" class="form-label">Sell Price
-                                                (&#8358;/kg)</label>
+                                            <label for="exampleFormControlInput1" class="form-label">Slate</label>
                                             <input type="number" class="form-control" id="priceInput"
-                                                placeholder="&#8358;5,000.00 per kg">
+                                                placeholder="No. of slates in carton">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Buy price</label>
+                                        <input type="number" class="form-control" id="nameInput"
+                                            placeholder="Enter buy price per carton">
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-md-6">
+                                            <label for="exampleFormControlInput1" class="form-label">Sell price
+                                                (Carton)</label>
+                                            <input type="number" class="form-control" id="priceInput"
+                                                placeholder="Enter carton sell price">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="exampleFormControlInput1" class="form-label">Sell price
+                                                (Slate)</label>
+                                            <input type="number" class="form-control" id="priceInput"
+                                                placeholder="Enter slate sell price">
                                         </div>
 
                                     </div>
@@ -525,47 +534,54 @@
                                                 <span>Change Image</span>
                                             </label>
                                             <input id="file" type="file" onchange="loadFile(event)" />
-                                            <img src="https://github.com/mdo.png" id="output" width="200" />
+                                            <img src="https://via.placeholder.com/200" id="output" width="200" />
                                         </div>
 
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Type</label>
                                         <input type="text" class="form-control" id="nameInput" value="Fish"
-                                            placeholder="Product Type" disabled readonly required>
+                                            placeholder="Enter product type" disabled readonly required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="nameInput"
-                                            placeholder="Product Name here..." value="Tilapia">
+                                            placeholder="Enter product name" value="Tilapia">
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-md-6"> <label for="exampleFormControlInput1"
+                                                class="form-label">Qty of cartons</label>
+                                            <input type="number" class="form-control" id="priceInput"
+                                                placeholder="Enter no. of total cartons" value="20">
+                                        </div>
+                                        <div class="col-md-6"> <label for="exampleFormControlInput1"
+                                                class="form-label">Slate</label>
+                                            <input type="number" class="form-control" id="priceInput"
+                                                placeholder="No. of slates in a carton" value="4">
+                                        </div>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Quantity</label>
+                                        <label for="exampleFormControlInput1" class="form-label">Buy price</label>
                                         <input type="number" class="form-control" id="priceInput"
-                                            placeholder="30 cartons" value="20">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Size (kg)</label>
-                                        <input type="number" class="form-control" id="priceInput" placeholder="20.00kg"
-                                            value="20">
+                                            placeholder="Enter buy price per carton" value="6500">
                                     </div>
 
 
                                     <div class="mb-3 row">
                                         <div class="col-md-6">
-                                            <label for="exampleFormControlInput1" class="form-label">Bought Price
-                                                (&#8358;/kg)</label>
+                                            <label for="exampleFormControlInput1" class="form-label">Sell price
+                                                (Carton)</label>
                                             <input type="number" class="form-control" id="priceInput"
-                                                placeholder="&#8358;5,000.00" value="6500">
+                                                placeholder="Enter carton sell price" value="8000">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="exampleFormControlInput1" class="form-label">Sell Price
-                                                (&#8358;/kg)</label>
+                                                (Slate)</label>
                                             <input type="number" class="form-control" id="priceInput"
-                                                placeholder="&#8358;5,000.00" value="8500">
+                                                placeholder="Enter slate sell price" value="2400">
                                         </div>
 
                                     </div>
@@ -573,7 +589,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-success">Update</button>
+                                <button type="button" class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </div>
