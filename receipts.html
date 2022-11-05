@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipts</title>
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <link href="assets/fontawesome/css/all.css" rel="stylesheet" />
+
+    <style type="text/css" media="print">
+        body {
+            /* width: 80mm; */
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        @page {
+            size: A3;
+            /* size: 3.14961in auto; */
+            /* auto is the initial value */
+            margin: 80mm;
+            /* this affects the margin in the printer settings */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a id="logo" class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fw-bolder" href="index.html">FishMan</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="w-100"></div>
+        <div class="navbar-nav bg-secondary">
+            <div class="nav-item text-nowrap ">
+                <a class="nav-link px-3 text-dark" href="login.html"> <i class="fa fa-sign-out me-2"></i>Sign out</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link " href="index.html">
+                                <i class="fa fa-home"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="pos.html">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>POS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="finance.html">
+                                <i class="fa fa-calculator"></i>
+                                <span>Finances</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="stock.html">
+                                <i class="fa fa-recycle"></i>
+                                <span>Restock</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="user-mgt.html">
+                                <i class="fa fa-users"></i>
+                                <span>User Management</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="settings.html">
+                                <i class="fa fa-cog"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+
+                        <li class="mt-4">
+                            <div class="text-center">
+
+                                <button type="button" class="btn btn-dark  text-white rounded-circle"
+                                    id="sidebarToggle">
+                                    <i class="fa fa-lg fa-chevron-left"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-dark  text-white rounded-circle  d-none"
+                                    id="sidebarToggle2">
+                                    <i class="fa fa-lg fa-chevron-right text-white "></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Receipts</h1>
+                </div>
+
+
+                <div class="mx-auto" style="width: 80mm !important;">
+
+                    <!-- Remove the 'border' class in the div below -->
+                    <div id="receiptBody" class="receipts p-4 border">
+                        <div class="border border-dark border-2 fw-bold fs-5 text-center mb-3">FishMan</div>
+                        <div class="small">Address: Aladesanmi Junction, Lagos-Ibadan Road, Asero, Abeokuta,
+                            Ogun State, Nigeria.
+                        </div>
+                        <div class="small">Tel: +234 701 228 1956</div>
+                        <div class="border-top border-bottom border-dark small py-2">
+                            <span class="text-start">Timestamp: 01-03-2022  15:47</span>
+                            <!-- <span class="float-end">Time: 15:47</span> -->
+                        </div>
+                        <div class="table-responsive small">
+                            <table class="table table-borderless">
+                                <thead class="">
+                                    <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Size</th>
+                                        <th scope="col">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Titus Fish</td>
+                                        <td>20</td>
+                                        <td>6000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Tilapia Fish</td>
+                                        <td>10</td>
+                                        <td>3000.00</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="border-top border-bottom border-dark">
+                                    <tr class="h5 fw-bold">
+                                        <td class="text-uppercase" colspan="2">Amount</td>
+                                        <td>9000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">Change</td>
+                                        <td>0.00</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div>FishMan No. 0000001 #001</div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-5">
+                        <button class="btn btn-dark px-4" id="printReceiptBtn"><i class="fas fa-print"></i>
+                            Print</button>
+                        <button class="btn btn-danger px-4" onclick="history.back()"><i class="fas fa-times"></i> Cancel</button>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // print receipt
+        document.getElementById("printReceiptBtn").addEventListener("click", function () {
+            var printContents = document.getElementById('receiptBody').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            // window.close();
+        });</script>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

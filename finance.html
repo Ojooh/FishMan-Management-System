@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finances</title>
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <link href="assets/fontawesome/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+</head>
+
+<body>
+
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a id="logo" class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fw-bolder" href="index.html">FishMan</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="w-100"></div>
+        <div class="navbar-nav bg-secondary">
+            <div class="nav-item text-nowrap ">
+                <a class="nav-link px-3 text-dark" href="login.html"> <i class="fa fa-sign-out me-2"></i>Sign out</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="fa fa-home"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pos.html">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>POS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="finance.html">
+                                <i class="fa fa-calculator"></i>
+                                <span>Finances</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="stock.html">
+                                <i class="fa fa-recycle"></i>
+                                <span>Restock</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="user-mgt.html">
+                                <i class="fa fa-users"></i>
+                                <span>User Management</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="settings.html">
+                                <i class="fa fa-cog"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+
+                        <li class="mt-4">
+                            <div class="text-center">
+
+                                <button type="button" class="btn btn-dark  text-white rounded-circle"
+                                    id="sidebarToggle">
+                                    <i class="fa fa-lg fa-chevron-left"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-dark  text-white rounded-circle  d-none"
+                                    id="sidebarToggle2">
+                                    <i class="fa fa-lg fa-chevron-right text-white "></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Finances</h1>
+
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <!-- <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Print</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                        </div> -->
+                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <!-- Action goes here -->
+                            Today
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item active" href="#">Today</a></li>
+                            <li><a class="dropdown-item" href="#">This Week</a></li>
+                            <li><a class="dropdown-item" href="#">This Month</a></li>
+                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row row-cols-1 row-cols-md-4 g-4 d-flex justify-content-around">
+                    <div class="col" style="height: 170px;">
+                        <!-- <input type="checkbox" id="card-1" /> -->
+                        <div class="card bg-dark text-white h-100 shadow-lg border-0 py-4">
+                            <div class="card-body">
+                                <h3>&#8358;65,000.00</h3>
+                                <h6 class="text-muted small mt-3">Total Amount</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col" style="height: 170px;">
+                        <!-- <input type="checkbox" id="card-2" /> -->
+                        <div class="card bg-dark text-white h-100 shadow-lg border-0 py-4">
+                            <div class="card-body">
+                                <h3>27</h3>
+                                <h6 class="text-muted small mt-3">Total Sales</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <input type="checkbox" id="card-4" />
+                        <label class="card-container" for="card-4">
+                            <div class="card-flip">
+                                <div class="front">
+                                    <div class="card bg-dark text-white h-100 shadow-lg border-0 position-relative">
+                                        <div class="card-body">
+                                            <div class="py-4">
+                                                <h3>534 <span class="lead">cartons</span></h3>
+                                                <h6 class="text-muted small mt-3">Stock Remainder</h6>
+                                            </div>
+                                            <button type="button"
+                                                class="position-absolute top-0 end-0 btn btn-sm btn-outline-secondary rounded-pill m-3"
+                                                style="width: 2rem; height:2rem;" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title="Tap on card"><i
+                                                    class="fa-solid fa-exclamation"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="back"  style="height: 170px;">
+                                    <div class="card h-100 shadow border-0 overflow-auto">
+                                        <div class="card-body">
+                                            <h6 class="card-title text-muted">Stock Remainder</h6>
+                                            <ul class="list-group list-group-flush small">
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                                    Tilapia Fish
+                                                    <span class="badge bg-primary rounded-pill">223</span>
+                                                </li>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                                    Croaker Fish (s)
+                                                    <span class="badge bg-primary rounded-pill">311</span>
+                                                </li>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                                    Croaker Fish (c)
+                                                    <span class="badge bg-primary rounded-pill">311</span>
+                                                </li>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                                    Catfish
+                                                    <span class="badge bg-primary rounded-pill">0</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+
+                    <div class="row border-bottom mb-3">
+
+                        <div class="col-auto">
+                            <h4>View Sales</h4>
+                        </div>
+
+                        <div class="col-auto ms-auto pe-2">
+                            <div class="btn-group">
+                                <button type="button" id="printReportBtn"
+                                    class="btn btn-sm btn-outline-secondary">Print</button>
+                                <button type="button" id="exportReportBtn" onclick="generatePDF()"
+                                    class="btn btn-sm btn-outline-secondary">Export</button>
+                            </div>
+                        </div>
+
+                        <div class="col-auto ps-0">
+
+                            <div class="input-group mb-3 border border-secondary rounded">
+                                <span class="input-group-text bg-white border-0" id="date-addon"><i
+                                        class="fa-solid fa-calendar-days text-secondary"></i></span>
+                                <input type="text" class="form-control border-0 ps-0 bg-white text-secondary"
+                                    id="daterange" value="01/01/2018 - 01/15/2018" aria-describedby="date-addon"
+                                    readonly />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <table class="cell-border" id="daySalesTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Sales</th>
+                                <th scope="col">Total(&#8358;)</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Wed 23, March 2022</td>
+                                <td>24</td>
+                                <td>60,000</td>
+                                <td> <button class="btn btn-sm btn-outline-dark" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop"><i class="fa-solid fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Thurs 24 March 2022</td>
+                                <td>16</td>
+                                <td>24,000</td>
+                                <td><button class="btn btn-sm btn-outline-dark" type="button"><i
+                                            class="fa-solid fa-eye"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <!-- View More Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Sales for Wed 23, March 2022</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="transTable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Receipt No.</th>
+                                                <th scope="col">Timestamp</th>
+                                                <th scope="col">Cashier</th>
+                                                <th scope="col">Payment</th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Qty/Size</th>
+                                                <th scope="col">Price(&#8358;)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="border-top-0">
+                                            <tr>
+                                                <th scope="row"></th>
+                                                <td>0000001 #001</td>
+                                                <td class="small">Wed 23, March 2022 12:03 PM</td>
+                                                <td>Salome</td>
+                                                <td>Cash</td>
+                                                <td>Tilapia Fish</td>
+                                                <td>1 Carton</td>
+                                                <td>2,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="4" colspan="5"></td>
+                                                <td>Croaker Fish</td>
+                                                <td>2 Cartons</td>
+                                                <td>3,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Catfish</td>
+                                                <td>5 kg</td>
+                                                <td>500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Crayfish</td>
+                                                <td>3 Cartons</td>
+                                                <td>5000</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="fw-bold bg-dark text-white">Total</td>
+                                                <td class="fw-bold bg-dark text-white">23,000</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row"></th>
+                                                <td>0000001 #002</td>
+                                                <td class="small">Wed 23, March 2022 2:02 PM</td>
+                                                <td>Salome</td>
+                                                <td>Card</td>
+                                                <td>Catfish</td>
+                                                <td>5 kg</td>
+                                                <td>1,200</td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2" colspan="5"></td>
+                                                <td colspan="2" class="fw-bold bg-dark text-white">Total</td>
+                                                <td class="fw-bold bg-dark text-white">27,000</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <span class="bg-primary py-2 px-5 text-white rounded me-auto">Total:
+                                    <b>&#8358;50,000</b></span>
+
+                                <button type="button" id="printDayReportBtn" class="btn btn-dark"><i
+                                        class="fa-solid fa-print"></i>
+                                    Print</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+
+    <!-- General Report -->
+    <div class="d-none" id="printReport">
+
+        <div class="row px-5 py-2">
+            <div class="col">
+                <h5 class="fw-bold">FishMart Report</h5>
+            </div>
+            <div class="col text-end">
+                <span>From: Wed 23, March 2022</span> <br>
+                <span> To: Thurs 24, March 2022</span>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12 px-4 mt-3">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Vault Remainder <span class="badge bg-secondary rounded-pill">12</span>
+                            </th>
+                            <th scope="col">Stock Remainder <span class="badge bg-secondary rounded-pill">534</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tilapia <span class="badge bg-primary rounded-pill">5</span> </td>
+                            <td>Tilapia <span class="badge bg-primary rounded-pill">300</span></td>
+                        </tr>
+                        <tr>
+                            <td>Catfish <span class="badge bg-primary rounded-pill">7</span> </td>
+                            <td>Catfish <span class="badge bg-primary rounded-pill">234</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 class="fw-bold px-4 my-4">Sales Breakdown</h4>
+
+            <div class="col-md-12">
+                <div class="">
+                    <table class="table table-bordered table-dark mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Wed 23, March 2022</th>
+                                <th scope="col">No. of Sales: 27</th>
+                                <th scope="col">Total: &#8358;23,000.00</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="table table-bordered mb-0" id="reportTbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Receipt No.</th>
+                                <th scope="col">Timestamp</th>
+                                <th scope="col">Cashier</th>
+                                <th scope="col">Payment</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Qty/Size</th>
+                                <th scope="col">Price(&#8358;)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-top-0">
+                            <tr>
+                                <th scope="row"></th>
+                                <td>0000001 #001</td>
+                                <td class="small">Wed 23, March 2022 12:03 PM</td>
+                                <td>Salome</td>
+                                <td>Cash</td>
+                                <td>Tilapia Fish</td>
+                                <td>1 Carton</td>
+                                <td>2,500</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4" colspan="5">Total</td>
+                                <td>Croaker Fish</td>
+                                <td>2 Cartons</td>
+                                <td>3,000</td>
+                            </tr>
+                            <tr>
+                                <td>Catfish</td>
+                                <td>5 kg</td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>Crayfish</td>
+                                <td>3 Cartons</td>
+                                <td>5000</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="fw-bold">Total</td>
+                                <td class="fw-bold">20,000</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"></th>
+                                <td>0000001 #002</td>
+                                <td class="small">Wed 23, March 2022 2:02 PM</td>
+                                <td>Salome</td>
+                                <td>Card</td>
+                                <td>Catfish</td>
+                                <td>5 kg</td>
+                                <td>1,200</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" colspan="5"></td>
+                                <td colspan="2" class="fw-bold">Total</td>
+                                <td class="fw-bold">20,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-bordered table-dark mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Thurs 24, March 2022</th>
+                                <th scope="col">No. of Sales: 5</th>
+                                <th scope="col">Total: &#8358;34,000.00</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="table table-bordered mb-0" id="reportTbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Receipt No.</th>
+                                <th scope="col">Timestamp</th>
+                                <th scope="col">Cashier</th>
+                                <th scope="col">Payment</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Qty/Size</th>
+                                <th scope="col">Price(&#8358;)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-top-0">
+                            <tr>
+                                <th scope="row"></th>
+                                <td>0000001 #001</td>
+                                <td class="small">Thur 23, March 2022 12:03 PM</td>
+                                <td>Salome</td>
+                                <td>Cash</td>
+                                <td>Tilapia Fish</td>
+                                <td>1 Carton</td>
+                                <td>2,500</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4" colspan="5"></td>
+                                <td>Croaker Fish</td>
+                                <td>2 Cartons</td>
+                                <td>3,000</td>
+                            </tr>
+                            <tr>
+                                <td>Catfish</td>
+                                <td>5 kg</td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>Crayfish</td>
+                                <td>3 Cartons</td>
+                                <td>5000</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="fw-bold">Total</td>
+                                <td class="fw-bold">23,000</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"></th>
+                                <td>0000001 #002</td>
+                                <td class="small">Thur 23, March 2022 2:02 PM</td>
+                                <td>Salome</td>
+                                <td>Card</td>
+                                <td>Catfish</td>
+                                <td>5 kg</td>
+                                <td>1,200</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" colspan="5"></td>
+                                <td colspan="2" class="fw-bold">Total</td>
+                                <td class="fw-bold">20,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <h6 class="fw-bold float-end my-3 me-3 ps-5 pt-2 border-top border-2">Total Amount:
+                    &#8358;65,000.00</h6>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- Day Report -->
+    <div class="d-none" id="printDayReport">
+        <div class="row px-5 pt-2 pb-3">
+            <div class="col">
+                <h5 class="fw-bold">FishMart Report</h5>
+            </div>
+            <div class="col text-end">
+                <span>Date: Wed 23, March 2022</span> <br>
+                <span>No. of Sales: 27</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 px-5 mt-3">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Vault Remainder <span class="badge bg-secondary rounded-pill">12</span>
+                            </th>
+                            <th scope="col">Stock Remainder <span class="badge bg-secondary rounded-pill">534</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tilapia <span class="badge bg-primary rounded-pill">5</span> </td>
+                            <td>Tilapia <span class="badge bg-primary rounded-pill">300</span></td>
+                        </tr>
+                        <tr>
+                            <td>Catfish <span class="badge bg-primary rounded-pill">7</span> </td>
+                            <td>Catfish <span class="badge bg-primary rounded-pill">234</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <h4 class="fw-bold px-4 my-4">Sales Breakdown</h4> -->
+
+            <div class="col-md-12">
+                <div class="mt-4">
+                    <table class="table table-bordered mb-0" id="reportTbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Receipt No.</th>
+                                <th scope="col">Timestamp</th>
+                                <th scope="col">Cashier</th>
+                                <th scope="col">Payment</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Qty/Size</th>
+                                <th scope="col">Price(&#8358;)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-top-0">
+                            <tr>
+                                <th scope="row"></th>
+                                <td>0000001 #001</td>
+                                <td class="small">Wed 23, March 2022 12:03 PM</td>
+                                <td>Salome</td>
+                                <td>Cash</td>
+                                <td>Tilapia Fish</td>
+                                <td>1 Carton</td>
+                                <td>2,500</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4" colspan="5"></td>
+                                <td>Croaker Fish</td>
+                                <td>2 Cartons</td>
+                                <td>3,000</td>
+                            </tr>
+                            <tr>
+                                <td>Catfish</td>
+                                <td>5 kg</td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>Crayfish</td>
+                                <td>3 Cartons</td>
+                                <td>5000</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="fw-bold">Total</td>
+                                <td class="fw-bold">23,000</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"></th>
+                                <td>0000001 #002</td>
+                                <td class="small">Wed 23, March 2022 2:02 PM</td>
+                                <td>Salome</td>
+                                <td>Card</td>
+                                <td>Catfish</td>
+                                <td>5 kg</td>
+                                <td>1,200</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" colspan="5"></td>
+                                <td colspan="2" class="fw-bold">Total</td>
+                                <td class="fw-bold">27,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <h6 class="fw-bold float-end my-3 me-3 ps-5 pt-2 border-top border-2">Total Amount:
+                    &#8358;23,000.00</h6>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <script src="assets/js/html2pdf.bundle.min.js"></script>
+
+    <script>
+        // print general report
+        document.getElementById("printReportBtn").addEventListener("click", function () {
+            var printContents = document.getElementById('printReport').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            // window.close();
+        });
+
+        // print day report
+        document.getElementById("printDayReportBtn").addEventListener("click", function () {
+            var printContents = document.getElementById('printDayReport').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            // window.close();
+        });
+
+        // export general report as pdf
+        function generatePDF() {
+            const element = document.getElementById('printReport').innerHTML;
+            // Choose the element and save the PDF for our user.
+            html2pdf().from(element).save();
+        }
+    </script>
+
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- Date Range picker -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
+
+
+</body>
+
+</html>

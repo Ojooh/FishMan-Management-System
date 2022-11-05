@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <link href="assets/fontawesome/css/all.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a id="logo" class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fw-bolder" href="index.html">FishMan</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="w-100"></div>
+        <div class="navbar-nav bg-secondary">
+            <div class="nav-item text-nowrap ">
+                <a class="nav-link px-3 text-dark" href="login.html"> <i class="fa fa-sign-out me-2"></i>Sign out</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="fa fa-home"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pos.html">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>POS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="finance.html">
+                                <i class="fa fa-calculator"></i>
+                                <span>Finances</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="stock.html">
+                                <i class="fa fa-recycle"></i>
+                                <span>Restock</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="user-mgt.html">
+                                <i class="fa fa-users"></i>
+                                <span>User Management</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="settings.html">
+                                <i class="fa fa-cog"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+
+                        <li class="mt-4">
+                            <div class="text-center">
+
+                                <button type="button" class="btn btn-dark  text-white rounded-circle"
+                                    id="sidebarToggle">
+                                    <i class="fa fa-lg fa-chevron-left"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-dark  text-white rounded-circle  d-none"
+                                    id="sidebarToggle2">
+                                    <i class="fa fa-lg fa-chevron-right text-white "></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Settings</h1>
+                </div>
+
+                <div class="">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="first-tab" aria-current="page" href="#" data-bs-toggle="tab"
+                                data-bs-target="#first" role="tab" aria-controls="first"
+                                aria-selected="true">General</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="second-tab" href="#" data-bs-toggle="tab" data-bs-target="#second"
+                                role="tab" aria-controls="second" aria-selected="true">Roles</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="third-tab" href="#" data-bs-toggle="tab" data-bs-target="#third"
+                                role="tab" aria-controls="third" aria-selected="true">Currency</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link disabled" id="fourth-tab" data-bs-toggle="tab" data-bs-target="#fourth"
+                                role="tab" aria-controls="fourth" aria-selected="true">Backup</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content border-start border-end border-bottom mb-3" id="myTabContent">
+
+
+
+
+                        <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+                            <form class="py-4 px-sm-5" action="">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Company
+                                                Name</label>
+                                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                placeholder="Type here" aria-describedby="help1">
+                                            <div id="help1" class="form-text">Lorem ishup ishup orem ishup shup.</div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">Mobile
+                                                Number</label>
+                                            <input type="tel" class="form-control" id="exampleFormControlInput2"
+                                                placeholder="Type here" aria-describedby="help2">
+                                            <div id="help2" class="form-text">Lorem ishup ishup orem ishup shup.</div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                aria-describedby="help3"></textarea>
+                                            <div id="help3" class="form-text">Lorem ishup ishup orem ishup shup.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">System
+                                                Logo</label>
+                                            <div class="bg-secondary rounded" style="width: 200px; height: 200px;">
+                                            </div>
+                                            <input type="file" class="form-control mt-2" id="saveImg">
+
+                                            <button type="button" class="btn btn-success mt-4">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+
+                        <div class="tab-pane fade p-3" id="second" role="tabpanel" aria-labelledby="second-tab">
+
+                            <div class="mb-3">
+                                <span class="ms-sm-3 h5">Role Permission</span>
+
+                                <button type="button" class="btn btn-sm btn-outline-secondary float-end" data-bs-toggle="modal" data-bs-target="#addRole"><i
+                                        class="fa-solid fa-plus"></i>
+                                    Add</button>
+
+                            </div>
+
+                            <table class="table table-bordered">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Roles</th>
+                                        <th scope="col">Modules</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border-top-0">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Front Desk</td>
+                                        <td>
+                                            <input type="checkbox" class="btn-check" id="1btn-check-outlined2"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="1btn-check-outlined2">POS</label>
+
+                                            <input type="checkbox" class="btn-check" id="1btn-check-outlined3"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="1btn-check-outlined3">Finances</label>
+
+                                            <input type="checkbox" class="btn-check" id="1btn-check-outlined4"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="1btn-check-outlined4">Restock</label>
+
+                                            <input type="checkbox" class="btn-check" id="1btn-check-outlined5"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1" for="1btn-check-outlined5">User
+                                                Mgt</label>
+
+                                            <input type="checkbox" class="btn-check" id="1btn-check-outlined6"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="1btn-check-outlined6">Settings</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Accountant</td>
+                                        <td>
+
+                                            <input type="checkbox" class="btn-check" id="3btn-check-outlined2"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="3btn-check-outlined2">POS</label>
+
+                                            <input type="checkbox" class="btn-check" id="3btn-check-outlined3"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="3btn-check-outlined3">Finances</label>
+
+                                            <input type="checkbox" class="btn-check" id="3btn-check-outlined4"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="3btn-check-outlined4">Restock</label>
+
+                                            <input type="checkbox" class="btn-check" id="3btn-check-outlined5"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1" for="3btn-check-outlined5">User
+                                                Mgt</label>
+
+                                            <input type="checkbox" class="btn-check" id="3btn-check-outlined6"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="3btn-check-outlined6">Settings</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Admin</td>
+                                        <td>
+
+                                            <input type="checkbox" class="btn-check" id="4btn-check-outlined2"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="4btn-check-outlined2">POS</label>
+
+                                            <input type="checkbox" class="btn-check" id="4btn-check-outlined3"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="4btn-check-outlined3">Finances</label>
+
+                                            <input type="checkbox" class="btn-check" id="4btn-check-outlined4"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="4btn-check-outlined4">Restock</label>
+
+                                            <input type="checkbox" class="btn-check" id="4btn-check-outlined5"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1" for="4btn-check-outlined5">User
+                                                Mgt</label>
+
+                                            <input type="checkbox" class="btn-check" id="4btn-check-outlined6"
+                                                autocomplete="off">
+                                            <label class="btn btn-outline-primary my-1"
+                                                for="4btn-check-outlined6">Settings</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <button type="button" class="btn btn-success">Update</button>
+                        </div>
+
+
+
+                        <div class="tab-pane fade" id="third" role="tabpanel" aria-labelledby="third-tab">
+                            <form action="" class="p-5">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Currency Name</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="e.g Naira">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput2" class="form-label">HTML Entity</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput2"
+                                        placeholder="e.g &#8358;">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput3" class="form-label">Symbol</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput3"
+                                        placeholder="e.g NGN">
+                                </div>
+
+                                <button type="button" class="btn btn-success px-5 mt-3">Save</button>
+                            </form>
+                        </div>
+
+
+
+                        <div class="tab-pane fade" id="fourth" role="tabpanel" aria-labelledby="fourth-tab"></div>
+                    </div>
+
+
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+
+    <!-- Add Role Modal -->
+    <div class="modal fade" id="addRole"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="addRoleLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addRoleLabel">Add new role</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-9">
+                          <input type="text" id="inputRole" class="form-control">
+                        </div>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

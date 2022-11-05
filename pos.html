@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS</title>
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <link href="assets/fontawesome/css/all.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a id="logo" class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fw-bolder" href="index.html">FishMan</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="w-100"></div>
+        <div class="navbar-nav bg-secondary">
+            <div class="nav-item text-nowrap">
+                <a class="nav-link px-3 text-dark" href="login.html"> <i class="fa fa-sign-out me-2"></i>Sign out</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div id="sideMenu" class="">
+                <nav id="sidebarMenu" class="col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link " href="index.html">
+                                    <i class="fa fa-home"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="pos.html">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>POS</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="finance.html">
+                                    <i class="fa fa-calculator"></i>
+                                    <span>Finances</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="stock.html">
+                                    <i class="fa fa-recycle"></i>
+                                    <span>Restock</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="user-mgt.html">
+                                    <i class="fa fa-users"></i>
+                                    <span>User Management</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="settings.html">
+                                    <i class="fa fa-cog"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+
+                            <li class="mt-4">
+                                <div class="text-center">
+
+                                    <button type="button" class="btn btn-dark  text-white rounded-circle"
+                                        id="sidebarToggle">
+                                        <i class="fa fa-lg fa-chevron-left"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-dark  text-white rounded-circle  d-none"
+                                        id="sidebarToggle2">
+                                        <i class="fa fa-lg fa-chevron-right text-white "></i>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <main id="pos" class="ms-sm-auto col-lg-10 px-md-4">
+                <!-- <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">POS</h1>
+                </div> -->
+
+
+                <div class="row">
+
+                    <div class="col-md-8 vh-100 py-2">
+                        <div class="card h-75 rounded-0 bg-white">
+                            <div class="card-header text-center">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button id="full-screen" onclick="openFullscreen();" type="button"
+                                            class="btn btn-lg float-start border-0 py-0">
+                                            <i class="fa fa-expand"></i></button>
+
+                                        <button id="normal-screen" onclick="closeFullscreen();" type="button"
+                                            class="btn btn-lg float-start border-0 py-0 d-none">
+                                            <i class="fa fa-compress"></i></button>
+                                    </div>
+                                    <form class="col-md-6">
+                                        <div class="d-flex">
+                                            <input class="form-control me-2 rounded-0" type="search"
+                                                placeholder="Search here..." aria-label="Search">
+                                            <button class="btn btn-outline-success rounded-0" type="submit"><i
+                                                    class="fa fa-search"></i></button>
+                                        </div>
+
+
+                                    </form>
+                                </div>
+
+                            </div>
+
+                            <div class="card-body overflow-auto">
+                                <div class="container">
+                                    <div class="row mb-4">
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <div class="mb-2"><img src="assets/img/tilapia.png"
+                                                    class="border p-1 img-fluid pos-item" alt="">
+                                            </div>
+                                            <h6 class="small">Tilapia Fish</h6>
+                                            <h6 class="text-primary small">&#8358;900.99</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="jumbotron d-flex align-items-center h-15 rounded-0">
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col-md-3 my-2">
+                                        <button
+                                            class="btn btn-blue-800 btn-lg rounded-0 w-100 fs-6 text-uppercase active">
+                                            <img src="assets/img/fish.png" class="pos-button-icon"><br> Fish</button>
+                                    </div>
+                                    <div class="col-md-3 my-2">
+                                        <button class="btn btn-blue-800 btn-lg rounded-0 w-100 fs-6 text-uppercase">
+                                            <img src="assets/img/chicken.png" class="pos-button-icon"><br>
+                                            Chicken</button>
+                                    </div>
+                                    <div class="col-md-3 my-2">
+                                        <button class="btn btn-blue-800 btn-lg rounded-0 w-100 fs-6 text-uppercase"
+                                            disabled>
+                                            <img src="assets/img/snail.png" class="pos-button-icon"><br>Snail</button>
+                                    </div>
+                                    <div class="col-md-3 my-2">
+                                        <button class="btn btn-blue-800 btn-lg rounded-0 w-100 fs-6 text-uppercase">
+                                            <img src="assets/img/eggs.png" class="pos-button-icon">
+                                            <br>Eggs</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="my-4 float-end">
+                            <button type="button" class="btn btn-outline-danger rounded-0">Cancel Order</button>
+                            <button type="button" class="btn btn-outline-secondary rounded-0 position-relative">
+                                Hold Order
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                                    2
+                                    <span class="visually-hidden">unfinished orders</span>
+                                </span>
+                            </button>
+
+                            <!-- <button type="button" class="btn btn-outline-secondary rounded-0">Hold Order</button> -->
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 vh-100 py-2">
+                        <div class="card h-90 rounded-0 bg-white">
+                            <div class="card-header text-center"><b>Checkout</b>
+                                <button class="btn btn-warning float-end" data-bs-toggle="modal"
+                                    data-bs-target="#holdOrderModal" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    data-bs-custom-class="custom-tooltip"
+                                    title="Click on this to open modal that shows held orders.">
+                                    <i class="fas fa-cart-arrow-down text-white"></i>
+                                </button>
+                            </div>
+                            <div class="card-body p-0 overflow-auto">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead class="text-secondary small text-center table-active">
+                                            <tr>
+                                                <th></th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Size</th>
+                                                <th>Price(&#8358;)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr class="border-bottom">
+                                                <td><i class="fa fa-trash"></i></td>
+                                                <td>Titus</td>
+                                                <td><select class="form-select" aria-label="Default select example">
+                                                        <option selected disabled>Select</option>
+                                                        <option value="1">per Carton</option>
+                                                        <option value="2">per KG</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="number" class="form-control" /></td>
+                                                <td>6,000.00</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                            <div class="card-footer p-0">
+
+                                <table class="table table-light table-borderless m-0 small">
+
+                                    <tr class="">
+                                        <td>Discounts (%)</td>
+                                        <td class="text-end"><input type="number" class="form-control" /></td>
+                                    </tr>
+                                    <tr class="">
+                                        <td>Sub Total</td>
+                                        <td class="text-end">&#8358;100.00</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td>Tax (%)</td>
+                                        <td class="text-end"><input type="number" class="form-control" /></td>
+                                    </tr>
+                                </table>
+
+                                <table class="table table-borderless bg-white border-top m-0">
+                                    <tr class="">
+                                        <td class="">Total</td>
+                                        <td class="text-end text-primary">&#8358;20,000.00</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-success form-control my-4 rounded-0" data-bs-toggle="modal"
+                            data-bs-target="#payModal">Pay
+                            (&#8358;20,000.00)</button>
+                    </div>
+
+                </div>
+
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="payModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="payModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 bg-gap-2">
+                <div class="modal-header">
+                    <h5 class="modal-title text-white" id="staticBackdropLabel">Choose payment method?</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="table-responsive h-50">
+
+                        <table class="table table-light table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Size</th>
+                                    <th scope="col">Price <small
+                                            class="text-muted fw-normal">(&#x20A6;60,000.00)</small></th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Titus Fish</td>
+                                    <td>60</td>
+                                    <td>13000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Tilapia Fish</td>
+                                    <td>30</td>
+                                    <td>14500</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Titus Fish</td>
+                                    <td>60</td>
+                                    <td>13000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>Tilapia Fish</td>
+                                    <td>30</td>
+                                    <td>14500</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>Titus Fish</td>
+                                    <td>60</td>
+                                    <td>13000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">6</th>
+                                    <td>Tilapia Fish</td>
+                                    <td>30</td>
+                                    <td>14500</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">7</th>
+                                    <td>Titus Fish</td>
+                                    <td>60</td>
+                                    <td>13000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">8</th>
+                                    <td>Tilapia Fish</td>
+                                    <td>30</td>
+                                    <td>14500</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">9</th>
+                                    <td>Titus Fish</td>
+                                    <td>60</td>
+                                    <td>13000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">10</th>
+                                    <td>Tilapia Fish</td>
+                                    <td>30</td>
+                                    <td>14500</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">11</th>
+                                    <td>Titus Fish</td>
+                                    <td>60</td>
+                                    <td>13000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">12</th>
+                                    <td>Tilapia Fish</td>
+                                    <td>30</td>
+                                    <td>14500</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="modal-footer d-inline">
+                    <div class="row justify-content-evenly">
+                        <button type="button" class="btn btn-primary btn-lg col-md-3" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasCard" aria-controls="offcanvasCard"> <i
+                                class="fa fa-credit-card"></i>
+                            Card</button>
+
+                        <!-- <button type="button" class="btn btn-secondary btn-lg col-md-3" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                            <i class="fa fa-wallet"></i> Credit</button> -->
+
+                        <button type="button" class="btn btn-secondary btn-lg col-md-3" data-bs-target="#exampleModalToggle2"
+                            data-bs-toggle="modal"><i class="fa fa-wallet"></i> Credit</button></button>
+
+                        <button type="button" class="btn btn-success btn-lg col-md-3" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                            <i class="fa fa-money-bill-wave"></i> Cash</button>
+
+
+
+                        <!--
+                        data-bs-dismiss="modal" data-bs-target="#payModal" -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCard" aria-labelledby="offcanvasCardLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasCardLabel">Process Card</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text,
+                    images, lists, etc.
+
+                    <br><br>
+                    <span class="fw-bold fs-5"> Total: &#x20A6;60,000.00</span>
+
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <img src="assets/img/pos_machine.png" class="img-fluid w-75 float-end">
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="d-grid gap-2 col-10 mx-auto">
+                        <a href="receipts.html" class="btn btn-primary">Done</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cash -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Collect Cash</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+
+                <div class="row">
+                    <div class="col-md-4"> <label for="exampleFormControlInput1" class="fs-7 fw-bold">Balance
+                            Due</label></div>
+                    <div class="col-md-4"> <label for="exampleFormControlInput1" class="fs-7 fw-bold float-end">Amount
+                            Tendered</label></div>
+                    <div class="col-md-4"> <label for="exampleFormControlInput1"
+                            class="fs-7 fw-bold float-end">Change</label></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input type="number" class="form-control border-end-0" placeholder="0.0"
+                                aria-label="Balance">
+                            <input type="number" class="form-control border-start-0 text-end" placeholder="0.0"
+                                aria-label="Tendered">
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" class="form-control text-end" id="exampleFormControlInput1"
+                            placeholder="0.0">
+                    </div>
+                </div>
+
+                <div class="row m-0">
+                    <div class="col-md-12 mx-auto ms-2">
+                        <button type="button" value="7" class="btn btn-outline-dark col-md-2 m-2 btn-height">7</button>
+                        <button type="button" value="9" class="btn btn-outline-dark col-md-2 m-2 btn-height">8</button>
+                        <button type="button" value="9" class="btn btn-outline-dark col-md-2 m-2 btn-height">9</button>
+                        <button type="button" value="1000"
+                            class="btn btn-dark col-md-3 m-2 btn-height">&#x20A6;1000</button>
+
+                        <button type="button" value="4" class="btn btn-outline-dark col-md-2 m-2 btn-height">4</button>
+                        <button type="button" value="5" class="btn btn-outline-dark col-md-2 m-2 btn-height">5</button>
+                        <button type="button" value="6" class="btn btn-outline-dark col-md-2 m-2 btn-height">6</button>
+                        <button type="button" value="500"
+                            class="btn btn-dark col-md-3 m-2 btn-height">&#x20A6;500</button>
+
+                        <button type="button" value="3" class="btn btn-outline-dark col-md-2 m-2 btn-height">3</button>
+                        <button type="button" value="2" class="btn btn-outline-dark col-md-2 m-2 btn-height">2</button>
+                        <button type="button" value="1" class="btn btn-outline-dark col-md-2 m-2 btn-height">1</button>
+                        <button type="button" value="200"
+                            class="btn btn-dark col-md-3 m-2 btn-height">&#x20A6;200</button>
+
+                        <button type="button" class="btn btn-danger col-md-3 m-2 btn-height">AC</button>
+                        <button type="button" value="0" class="btn btn-outline-dark col-md-2 m-2 btn-height">0</button>
+                        <button type="button" class="btn btn-outline-dark col-md-2 m-2 btn-height">.</button>
+                        <button type="button" class="btn btn-secondary col-md-2 m-2 btn-height"><i
+                                class="fa fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-md-8">
+                        <div class="d-grid gap-2 col-12 mx-auto">
+                            <a href="receipts.html" class="btn btn-outline-success" type="button">Collect</a>
+                            <a href="pos.html" class="btn btn-dark" type="button">Go Back</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-auto">
+                        <a href="receipts.html" class="btn btn-primary btn-lg rounded-circle py-4">Done</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Credit -->
+        <div class="modal fade" id="creditModal" aria-hidden="true" aria-labelledby="creditModalLabel"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Hide this modal and show the first with the button below.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back
+                            to first</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Pending Orders Modal -->
+    <div class="modal fade" id="holdOrderModal" tabindex="-1" aria-labelledby="holdOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="holdOrderModalabel">Pending Orders</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Order</th>
+                                <th scope="col">Timestamp</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>fm-tmp-01</td>
+                                <td>01/Jul/2022 08:30</td>
+                                <td><button class="btn btn-success">Checkout</button></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>fm-tmp-02</td>
+                                <td>01/Jul/2022 13:30</td>
+                                <td><button class="btn btn-success">Checkout</button></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>fm-tmp-03</td>
+                                <td>01/Jul/2022 19:30</td>
+                                <td><button class="btn btn-success">Checkout</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
