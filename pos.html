@@ -287,7 +287,7 @@
                                                 <th></th>
                                                 <th>Name</th>
                                                 <th>Type</th>
-                                                <th>Size</th>
+                                                <th>Qty</th>
                                                 <th>Price(&#8358;)</th>
                                             </tr>
                                         </thead>
@@ -298,12 +298,12 @@
                                                 <td>Titus</td>
                                                 <td><select class="form-select" aria-label="Default select example">
                                                         <option selected disabled>Select</option>
-                                                        <option value="1">per Carton</option>
-                                                        <option value="2">per KG</option>
+                                                        <option value="1">per carton</option>
+                                                        <option value="2">per slate</option>
                                                     </select>
                                                 </td>
                                                 <td><input type="number" class="form-control" /></td>
-                                                <td>6,000.00</td>
+                                                <td>0.00</td>
                                             </tr>
 
                                         </tbody>
@@ -333,7 +333,7 @@
                                 <table class="table table-borderless bg-white border-top m-0">
                                     <tr class="">
                                         <td class="">Total</td>
-                                        <td class="text-end text-primary">&#8358;20,000.00</td>
+                                        <td class="text-end text-primary fw-bolder">&#8358;20,000.00</td>
                                     </tr>
                                 </table>
 
@@ -343,6 +343,7 @@
                         <button type="button" class="btn btn-success form-control my-4 rounded-0" data-bs-toggle="modal"
                             data-bs-target="#payModal">Pay
                             (&#8358;20,000.00)</button>
+
                     </div>
 
                 </div>
@@ -352,18 +353,16 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="payModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="payModalLabel" aria-hidden="true">
+    <!-- Payment modal -->
+    <div class="modal fade" id="payModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+        aria-labelledby="payModalLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content border-0 bg-gap-2">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-white" id="staticBackdropLabel">Choose payment method?</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="payModalLabel">Choose payment method?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     <div class="table-responsive h-50">
 
                         <table class="table table-light table-bordered">
@@ -371,7 +370,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Product</th>
-                                    <th scope="col">Size</th>
+                                    <th scope="col">Qty(Carton'Slate)</th>
                                     <th scope="col">Price <small
                                             class="text-muted fw-normal">(&#x20A6;60,000.00)</small></th>
                                 </tr>
@@ -380,19 +379,19 @@
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>Titus Fish</td>
-                                    <td>60</td>
+                                    <td>4'3</td>
                                     <td>13000</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>Tilapia Fish</td>
-                                    <td>30</td>
+                                    <td>30'3</td>
                                     <td>14500</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>Titus Fish</td>
-                                    <td>60</td>
+                                    <td>60'0</td>
                                     <td>13000</td>
                                 </tr>
                                 <tr>
@@ -452,31 +451,22 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div>
-                <div class="modal-footer d-inline">
-                    <div class="row justify-content-evenly">
-                        <button type="button" class="btn btn-primary btn-lg col-md-3" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasCard" aria-controls="offcanvasCard"> <i
-                                class="fa fa-credit-card"></i>
-                            Card</button>
+                <div class="modal-footer row px-4">
 
-                        <!-- <button type="button" class="btn btn-secondary btn-lg col-md-3" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                            <i class="fa fa-wallet"></i> Credit</button> -->
+                    <button type="button" class="btn btn-primary btn-lg col" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasCard" aria-controls="offcanvasCard"> <i class="fa fa-credit-card"></i>
+                        Card</button>
 
-                        <button type="button" class="btn btn-secondary btn-lg col-md-3" data-bs-target="#exampleModalToggle2"
-                            data-bs-toggle="modal"><i class="fa fa-wallet"></i> Credit</button></button>
+                    <button class="btn btn-secondary btn-lg col" data-bs-target="#creditModal" data-bs-toggle="modal"><i
+                            class="fa fa-wallet"></i>
+                        Credit</button>
 
-                        <button type="button" class="btn btn-success btn-lg col-md-3" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                            <i class="fa fa-money-bill-wave"></i> Cash</button>
+                    <button type="button" class="btn btn-success btn-lg col" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                        <i class="fa fa-money-bill-wave"></i> Cash</button>
 
 
-
-                        <!--
-                        data-bs-dismiss="modal" data-bs-target="#payModal" -->
-                    </div>
                 </div>
             </div>
         </div>
@@ -490,8 +480,10 @@
             </div>
             <div class="offcanvas-body">
                 <div>
-                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text,
-                    images, lists, etc.
+
+                    Collect the customer's debit card and use it on the POS terminal. Click "Done" button when the
+                    transaction
+                    is approved.
 
                     <br><br>
                     <span class="fw-bold fs-5"> Total: &#x20A6;60,000.00</span>
@@ -574,43 +566,48 @@
                     </div>
                 </div>
 
-                <div class="row mt-5">
+                <div class="mt-5">
+                    <div class="d-grid gap-2 col-10 mx-auto">
+                        <a href="receipts.html" class="btn btn-primary">Done</a>
+                    </div>
+                </div>
+
+                <!-- <div class="row mt-5">
                     <div class="col-md-8">
                         <div class="d-grid gap-2 col-12 mx-auto">
-                            <a href="receipts.html" class="btn btn-outline-success" type="button">Collect</a>
+                            <a href="pos.html" class="btn btn-outline-success" type="button">Collect</a>
                             <a href="pos.html" class="btn btn-dark" type="button">Go Back</a>
                         </div>
                     </div>
                     <div class="col-md-4 my-auto">
-                        <a href="receipts.html" class="btn btn-primary btn-lg rounded-circle py-4">Done</a>
+                        <button class="btn btn-primary btn-lg rounded-circle py-4" type="button" disabled>Done</button>
                     </div>
-                </div>
+                </div> -->
 
 
             </div>
         </div>
 
-        <!-- Credit -->
-        <div class="modal fade" id="creditModal" aria-hidden="true" aria-labelledby="creditModalLabel"
-            tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Hide this modal and show the first with the button below.
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back
-                            to first</button>
-                    </div>
+    </div>
+
+    <!-- Credit -->
+    <div class="modal fade" id="creditModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="creditModalLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="creditModalLabel">Add to customer credit</h1>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    Hide this modal and show the first with the button below.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-target="#payModal" data-bs-toggle="modal">Back</button>
+                    <button class="btn btn-success">Add</button>
                 </div>
             </div>
         </div>
     </div>
-
 
     <!-- Pending Orders Modal -->
     <div class="modal fade" id="holdOrderModal" tabindex="-1" aria-labelledby="holdOrderModalLabel" aria-hidden="true">
