@@ -157,30 +157,42 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="back"  style="height: 170px;">
+                                <div class="back" style="height: 170px;">
                                     <div class="card h-100 shadow border-0 overflow-auto">
                                         <div class="card-body">
                                             <h6 class="card-title text-muted">Stock Remainder</h6>
                                             <ul class="list-group list-group-flush small">
                                                 <li
                                                     class="list-group-item d-flex justify-content-between align-items-center">
-                                                    Tilapia Fish
-                                                    <span class="badge bg-primary rounded-pill">223</span>
+                                                    Tilapia
+                                                    <div>
+                                                        <span class="badge bg-primary rounded-pill">223</span>
+                                                        <span class="badge bg-info rounded-pill">223</span>
+                                                    </div>
                                                 </li>
                                                 <li
                                                     class="list-group-item d-flex justify-content-between align-items-center">
-                                                    Croaker Fish (s)
-                                                    <span class="badge bg-primary rounded-pill">311</span>
+                                                    Titus
+                                                    <div>
+                                                        <span class="badge bg-primary rounded-pill">223</span>
+                                                        <span class="badge bg-info rounded-pill">223</span>
+                                                    </div>
                                                 </li>
                                                 <li
                                                     class="list-group-item d-flex justify-content-between align-items-center">
-                                                    Croaker Fish (c)
-                                                    <span class="badge bg-primary rounded-pill">311</span>
+                                                    Croaker Fish
+                                                    <div>
+                                                        <span class="badge bg-primary rounded-pill">223</span>
+                                                        <span class="badge bg-info rounded-pill">223</span>
+                                                    </div>
                                                 </li>
                                                 <li
                                                     class="list-group-item d-flex justify-content-between align-items-center">
                                                     Catfish
-                                                    <span class="badge bg-primary rounded-pill">0</span>
+                                                    <div>
+                                                        <span class="badge bg-primary rounded-pill">0</span>
+                                                        <span class="badge bg-info rounded-pill">0</span>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </div>
@@ -267,65 +279,114 @@
                             <div class="modal-body">
 
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="transTable">
-                                        <thead>
+                                    <table class="table table-bordered">
+                                        <tbody>
                                             <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Receipt No.</th>
-                                                <th scope="col">Timestamp</th>
-                                                <th scope="col">Cashier</th>
-                                                <th scope="col">Payment</th>
-                                                <th scope="col">Product</th>
-                                                <th scope="col">Qty/Size</th>
-                                                <th scope="col">Price(&#8358;)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="border-top-0">
-                                            <tr>
-                                                <th scope="row"></th>
-                                                <td>0000001 #001</td>
-                                                <td class="small">Wed 23, March 2022 12:03 PM</td>
-                                                <td>Salome</td>
-                                                <td>Cash</td>
-                                                <td>Tilapia Fish</td>
-                                                <td>1 Carton</td>
-                                                <td>2,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="4" colspan="5"></td>
-                                                <td>Croaker Fish</td>
-                                                <td>2 Cartons</td>
-                                                <td>3,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Catfish</td>
-                                                <td>5 kg</td>
-                                                <td>500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Crayfish</td>
-                                                <td>3 Cartons</td>
-                                                <td>5000</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" class="fw-bold bg-dark text-white">Total</td>
-                                                <td class="fw-bold bg-dark text-white">23,000</td>
-                                            </tr>
+                                                <td class="p-0">
+                                                    <table class="table mb-0" id="transTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">Receipt No.</th>
+                                                                <th scope="col">Timestamp</th>
+                                                                <th scope="col">Cashier</th>
+                                                                <th scope="col">Payment</th>
+                                                                <th scope="col">Total(&#8358;)</th>
+                                                                <th scope="col">Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="border-top-0">
+                                                            <tr class="table-active">
+                                                                <th scope="row"></th>
+                                                                <td>#0000001</td>
+                                                                <td class="small">Wed 23, March 2022 12:03 PM</td>
+                                                                <td>Salome</td>
+                                                                <td>Cash</td>
+                                                                <td>6,000.00</td>
+                                                                <td>
+                                                                    <button class="btn btn-sm btn-dark"><i
+                                                                            class="fa fa-print"
+                                                                            id="printSpecificReportBtn"></i></button>
+                                                                    <button class="btn btn-sm btn-secondary"><i
+                                                                            class="fa fa-circle-chevron-right"></i></button>
+                                                                </td>
+                                                            </tr>
 
-                                            <tr>
-                                                <th scope="row"></th>
-                                                <td>0000001 #002</td>
-                                                <td class="small">Wed 23, March 2022 2:02 PM</td>
-                                                <td>Salome</td>
-                                                <td>Card</td>
-                                                <td>Catfish</td>
-                                                <td>5 kg</td>
-                                                <td>1,200</td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="2" colspan="5"></td>
-                                                <td colspan="2" class="fw-bold bg-dark text-white">Total</td>
-                                                <td class="fw-bold bg-dark text-white">27,000</td>
+                                                            <tr>
+                                                                <th scope="row"></th>
+                                                                <td>#0000002</td>
+                                                                <td class="small">Wed 23, March 2022 2:02 PM</td>
+                                                                <td>Salome</td>
+                                                                <td>Card</td>
+                                                                <td>27,000.000</td>
+                                                                <td>
+                                                                    <button class="btn btn-sm btn-dark"><i
+                                                                            class="fa fa-print"></i></button>
+                                                                    <button class="btn btn-sm btn-secondary"><i
+                                                                            class="fa fa-circle-chevron-right"></i></button>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th scope="row"></th>
+                                                                <td>#0000003</td>
+                                                                <td class="small">Wed 23, March 2022 5:42 PM</td>
+                                                                <td>Salome</td>
+                                                                <td>Card</td>
+                                                                <td>21,000.000</td>
+                                                                <td>
+                                                                    <button class="btn btn-sm btn-dark"><i
+                                                                            class="fa fa-print"></i></button>
+                                                                    <button class="btn btn-sm btn-secondary"><i
+                                                                            class="fa fa-circle-chevron-right"></i></button>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th scope="row"></th>
+                                                                <td>#0000004</td>
+                                                                <td class="small">Wed 23, March 2022 07:32 PM</td>
+                                                                <td>Salome</td>
+                                                                <td>Card</td>
+                                                                <td>14,000.000</td>
+                                                                <td>
+                                                                    <button class="btn btn-sm btn-dark"><i
+                                                                            class="fa fa-print"></i></button>
+                                                                    <button class="btn btn-sm btn-secondary"><i
+                                                                            class="fa fa-circle-chevron-right"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td class="table-active p-0">
+                                                    <table class="table table-bordered border-dark table-sm mb-0">
+                                                        <thead class="">
+                                                            <tr>
+                                                                <th scope="col">Product</th>
+                                                                <th scope="col">Qty</th>
+                                                                <th scope="col">Amount</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="border-top-0">
+                                                            <tr>
+                                                                <td>Titus</td>
+                                                                <td>2'3</td>
+                                                                <td>6000.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Tilapia</td>
+                                                                <td>1'2</td>
+                                                                <td>3000.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Catfish</td>
+                                                                <td>1'0</td>
+                                                                <td>1200.00</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -333,7 +394,7 @@
                             </div>
                             <div class="modal-footer">
                                 <span class="bg-primary py-2 px-5 text-white rounded me-auto">Total:
-                                    <b>&#8358;50,000</b></span>
+                                    <b>&#8358;33,000</b></span>
 
                                 <button type="button" id="printDayReportBtn" class="btn btn-dark"><i
                                         class="fa-solid fa-print"></i>
@@ -344,9 +405,14 @@
                     </div>
                 </div>
 
+
+
+
+
             </main>
         </div>
     </div>
+
 
 
     <!-- General Report -->
@@ -354,7 +420,7 @@
 
         <div class="row px-5 py-2">
             <div class="col">
-                <h5 class="fw-bold">FishMart Report</h5>
+                <h5 class="fw-bold">General Report</h5>
             </div>
             <div class="col text-end">
                 <span>From: Wed 23, March 2022</span> <br>
@@ -363,43 +429,20 @@
         </div>
         <div class="row">
 
-            <div class="col-md-12 px-4 mt-3">
-                <table class="table table-bordered table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">Vault Remainder <span class="badge bg-secondary rounded-pill">12</span>
-                            </th>
-                            <th scope="col">Stock Remainder <span class="badge bg-secondary rounded-pill">534</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Tilapia <span class="badge bg-primary rounded-pill">5</span> </td>
-                            <td>Tilapia <span class="badge bg-primary rounded-pill">300</span></td>
-                        </tr>
-                        <tr>
-                            <td>Catfish <span class="badge bg-primary rounded-pill">7</span> </td>
-                            <td>Catfish <span class="badge bg-primary rounded-pill">234</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h4 class="fw-bold px-4 my-4">Sales Breakdown</h4>
+            <!-- <h4 class="fw-bold px-4 my-4">Sales Breakdown</h4> -->
 
             <div class="col-md-12">
-                <div class="">
+                <div class="my-5">
                     <table class="table table-bordered table-dark mb-0">
                         <thead>
                             <tr>
                                 <th scope="col">Wed 23, March 2022</th>
                                 <th scope="col">No. of Sales: 27</th>
-                                <th scope="col">Total: &#8358;23,000.00</th>
+                                <th scope="col">Total: &#8358;31,200.00</th>
                             </tr>
                         </thead>
                     </table>
-                    <table class="table table-bordered mb-0" id="reportTbl">
+                    <table class="table table-bordered border-dark mb-0" id="reportTbl">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -408,56 +451,54 @@
                                 <th scope="col">Cashier</th>
                                 <th scope="col">Payment</th>
                                 <th scope="col">Product</th>
-                                <th scope="col">Qty/Size</th>
+                                <th scope="col">Qty</th>
                                 <th scope="col">Price(&#8358;)</th>
                             </tr>
                         </thead>
                         <tbody class="border-top-0">
                             <tr>
                                 <th scope="row"></th>
-                                <td>0000001 #001</td>
+                                <td>#0000001</td>
                                 <td class="small">Wed 23, March 2022 12:03 PM</td>
                                 <td>Salome</td>
                                 <td>Cash</td>
-                                <td>Tilapia Fish</td>
-                                <td>1 Carton</td>
+                                <td>Tilapia</td>
+                                <td>1'2</td>
                                 <td>2,500</td>
                             </tr>
                             <tr>
-                                <td rowspan="4" colspan="5">Total</td>
-                                <td>Croaker Fish</td>
-                                <td>2 Cartons</td>
+                                <td rowspan="4" colspan="5"></td>
+                                <td>Croaker</td>
+                                <td>2'0</td>
                                 <td>3,000</td>
                             </tr>
                             <tr>
                                 <td>Catfish</td>
-                                <td>5 kg</td>
-                                <td>500</td>
+                                <td>1'0</td>
+                                <td>1,200</td>
                             </tr>
                             <tr>
                                 <td>Crayfish</td>
-                                <td>3 Cartons</td>
+                                <td>3'1</td>
                                 <td>5000</td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="fw-bold">Total</td>
-                                <td class="fw-bold">20,000</td>
+                                <td colspan="3" class="fw-bold text-center fs-5"> &#8358;11,200.00</td>
                             </tr>
 
                             <tr>
                                 <th scope="row"></th>
-                                <td>0000001 #002</td>
+                                <td>#0000002</td>
                                 <td class="small">Wed 23, March 2022 2:02 PM</td>
                                 <td>Salome</td>
                                 <td>Card</td>
                                 <td>Catfish</td>
-                                <td>5 kg</td>
-                                <td>1,200</td>
+                                <td>4'0</td>
+                                <td>20,000</td>
                             </tr>
                             <tr>
                                 <td rowspan="2" colspan="5"></td>
-                                <td colspan="2" class="fw-bold">Total</td>
-                                <td class="fw-bold">20,000</td>
+                                <td colspan="3" class="fw-bold text-center fs-5"> &#8358;20,000.00</td>
                             </tr>
                         </tbody>
                     </table>
@@ -471,7 +512,7 @@
                             </tr>
                         </thead>
                     </table>
-                    <table class="table table-bordered mb-0" id="reportTbl">
+                    <table class="table table-bordered border-dark mb-0" id="reportTbl">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -480,64 +521,62 @@
                                 <th scope="col">Cashier</th>
                                 <th scope="col">Payment</th>
                                 <th scope="col">Product</th>
-                                <th scope="col">Qty/Size</th>
+                                <th scope="col">Qty</th>
                                 <th scope="col">Price(&#8358;)</th>
                             </tr>
                         </thead>
                         <tbody class="border-top-0">
                             <tr>
                                 <th scope="row"></th>
-                                <td>0000001 #001</td>
+                                <td>#0000003</td>
                                 <td class="small">Thur 23, March 2022 12:03 PM</td>
                                 <td>Salome</td>
                                 <td>Cash</td>
-                                <td>Tilapia Fish</td>
-                                <td>1 Carton</td>
+                                <td>Tilapia</td>
+                                <td>1'2</td>
                                 <td>2,500</td>
                             </tr>
                             <tr>
                                 <td rowspan="4" colspan="5"></td>
-                                <td>Croaker Fish</td>
-                                <td>2 Cartons</td>
+                                <td>Croaker</td>
+                                <td>2'0</td>
                                 <td>3,000</td>
                             </tr>
                             <tr>
                                 <td>Catfish</td>
-                                <td>5 kg</td>
-                                <td>500</td>
+                                <td>1'0</td>
+                                <td>1,500</td>
                             </tr>
                             <tr>
                                 <td>Crayfish</td>
-                                <td>3 Cartons</td>
+                                <td>3'1</td>
                                 <td>5000</td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="fw-bold">Total</td>
-                                <td class="fw-bold">23,000</td>
+                                <td colspan="3" class="fw-bold fs-5 text-center"> &#8358;12,000.00</td>
                             </tr>
 
                             <tr>
                                 <th scope="row"></th>
-                                <td>0000001 #002</td>
+                                <td>#0000004</td>
                                 <td class="small">Thur 23, March 2022 2:02 PM</td>
                                 <td>Salome</td>
                                 <td>Card</td>
                                 <td>Catfish</td>
-                                <td>5 kg</td>
-                                <td>1,200</td>
+                                <td>1'1</td>
+                                <td>2,500</td>
                             </tr>
                             <tr>
                                 <td rowspan="2" colspan="5"></td>
-                                <td colspan="2" class="fw-bold">Total</td>
-                                <td class="fw-bold">20,000</td>
+                                <td colspan="3" class="fw-bold fs-5 text-center"> &#8358;2,500.00</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
 
-                <h6 class="fw-bold float-end my-3 me-3 ps-5 pt-2 border-top border-2">Total Amount:
-                    &#8358;65,000.00</h6>
+                <h5 class="fw-bold float-end my-3 me-3 ps-5 pt-2 border-top border-2">Total amount:
+                    &#8358;65,000.00</h5>
 
             </div>
 
@@ -545,46 +584,21 @@
         </div>
     </div>
 
-
     <!-- Day Report -->
     <div class="d-none" id="printDayReport">
         <div class="row px-5 pt-2 pb-3">
             <div class="col">
-                <h5 class="fw-bold">FishMart Report</h5>
+                <h5 class="fw-bold">Daily Report</h5>
             </div>
             <div class="col text-end">
                 <span>Date: Wed 23, March 2022</span> <br>
-                <span>No. of Sales: 27</span>
+                <span>No. of Sales: 2</span>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 px-5 mt-3">
-                <table class="table table-bordered table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">Vault Remainder <span class="badge bg-secondary rounded-pill">12</span>
-                            </th>
-                            <th scope="col">Stock Remainder <span class="badge bg-secondary rounded-pill">534</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Tilapia <span class="badge bg-primary rounded-pill">5</span> </td>
-                            <td>Tilapia <span class="badge bg-primary rounded-pill">300</span></td>
-                        </tr>
-                        <tr>
-                            <td>Catfish <span class="badge bg-primary rounded-pill">7</span> </td>
-                            <td>Catfish <span class="badge bg-primary rounded-pill">234</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- <h4 class="fw-bold px-4 my-4">Sales Breakdown</h4> -->
-
             <div class="col-md-12">
-                <div class="mt-4">
-                    <table class="table table-bordered mb-0" id="reportTbl">
+                <div class="mt-4 mb-5">
+                    <table class="table table-bordered border-dark mb-0" id="reportTbl">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -593,64 +607,130 @@
                                 <th scope="col">Cashier</th>
                                 <th scope="col">Payment</th>
                                 <th scope="col">Product</th>
-                                <th scope="col">Qty/Size</th>
+                                <th scope="col">Qty</th>
                                 <th scope="col">Price(&#8358;)</th>
                             </tr>
                         </thead>
                         <tbody class="border-top-0">
                             <tr>
                                 <th scope="row"></th>
-                                <td>0000001 #001</td>
+                                <td>#0000001</td>
                                 <td class="small">Wed 23, March 2022 12:03 PM</td>
                                 <td>Salome</td>
                                 <td>Cash</td>
-                                <td>Tilapia Fish</td>
-                                <td>1 Carton</td>
+                                <td>Tilapia</td>
+                                <td>1'2</td>
                                 <td>2,500</td>
                             </tr>
                             <tr>
                                 <td rowspan="4" colspan="5"></td>
-                                <td>Croaker Fish</td>
-                                <td>2 Cartons</td>
+                                <td>Croaker</td>
+                                <td>2'0</td>
                                 <td>3,000</td>
                             </tr>
                             <tr>
                                 <td>Catfish</td>
-                                <td>5 kg</td>
+                                <td>4'2</td>
                                 <td>500</td>
                             </tr>
                             <tr>
                                 <td>Crayfish</td>
-                                <td>3 Cartons</td>
+                                <td>3'0</td>
                                 <td>5000</td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="fw-bold">Total</td>
-                                <td class="fw-bold">23,000</td>
+                                <td colspan="3" class="fw-bold fs-5 text-center">&#8358;23,000.00</td>
                             </tr>
 
                             <tr>
                                 <th scope="row"></th>
-                                <td>0000001 #002</td>
+                                <td>#0000002</td>
                                 <td class="small">Wed 23, March 2022 2:02 PM</td>
                                 <td>Salome</td>
                                 <td>Card</td>
                                 <td>Catfish</td>
-                                <td>5 kg</td>
+                                <td>1'0</td>
                                 <td>1,200</td>
                             </tr>
                             <tr>
                                 <td rowspan="2" colspan="5"></td>
-                                <td colspan="2" class="fw-bold">Total</td>
-                                <td class="fw-bold">27,000</td>
+                                <td colspan="3" class="fw-bold fs-5 text-center">&#8358;1,200.00</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
 
-                <h6 class="fw-bold float-end my-3 me-3 ps-5 pt-2 border-top border-2">Total Amount:
-                    &#8358;23,000.00</h6>
+                <h5 class="fw-bold float-end my-3 me-3 ps-5 pt-2 border-top border-2">Total amount:
+                    &#8358;24,200.00</h5>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- Specific Report -->
+    <div class="d-none" id="printSpecificReport">
+        <div class="row px-5 pt-2 pb-3">
+            <div class="col">
+                <h5 class="fw-bold">Report</h5>
+            </div>
+            <div class="col text-end">
+                <span>Date: Wed 23, March 2022 12:03 PM</span> <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mt-4 mb-5">
+                    <table class="table table-bordered border-dark mb-0" id="reportTbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">Receipt No.</th>
+                                <th scope="col">Timestamp</th>
+                                <th scope="col">Cashier</th>
+                                <th scope="col">Payment</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Price(&#8358;)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-top-0">
+                            <tr>
+                                <td>#0000001</td>
+                                <td class="small">Wed 23, March 2022 12:03 PM</td>
+                                <td>Salome</td>
+                                <td>Cash</td>
+                                <td>Tilapia</td>
+                                <td>1'2</td>
+                                <td>2,500</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4" colspan="4"></td>
+                                <td>Croaker</td>
+                                <td>2'0</td>
+                                <td>3,000</td>
+                            </tr>
+                            <tr>
+                                <td>Catfish</td>
+                                <td>4'2</td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>Crayfish</td>
+                                <td>3'0</td>
+                                <td>5000</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="fw-bold fs-5 text-center">&#8358;23,000.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <h5 class="fw-bold float-end my-3 me-3 ps-5 pt-2 border-top border-2">Total amount:
+                    &#8358;23,000.00</h5>
             </div>
 
 
@@ -661,7 +741,22 @@
 
     <script src="assets/js/html2pdf.bundle.min.js"></script>
 
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- Date Range picker -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
+
+
     <script>
+        // $(document).ready(function () {
+
         // print general report
         document.getElementById("printReportBtn").addEventListener("click", function () {
             var printContents = document.getElementById('printReport').innerHTML;
@@ -682,25 +777,24 @@
             // window.close();
         });
 
+        // print specific report
+        document.getElementById("printSpecificReportBtn").addEventListener("click", function () {
+            var printContents = document.getElementById('printSpecificReport').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            // window.close();
+        });
+
         // export general report as pdf
         function generatePDF() {
             const element = document.getElementById('printReport').innerHTML;
             // Choose the element and save the PDF for our user.
             html2pdf().from(element).save();
         }
+        // });
     </script>
-
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
-    <!-- Date Range picker -->
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-    <script src="assets/js/main.js"></script>
 
 
 </body>
