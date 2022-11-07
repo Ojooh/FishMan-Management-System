@@ -109,7 +109,7 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Receipts</h1>
+                    <h1 class="h2">Receipt Template</h1>
                 </div>
 
 
@@ -117,55 +117,66 @@
 
                     <!-- Remove the 'border' class in the div below -->
                     <div id="receiptBody" class="receipts p-4 border">
-                        <div class="border border-dark border-2 fw-bold fs-5 text-center mb-3">FishMan</div>
-                        <div class="small">Address: Aladesanmi Junction, Lagos-Ibadan Road, Asero, Abeokuta,
-                            Ogun State, Nigeria.
+                        <div class="fw-bold fs-5 text-center">
+                            FISHMAN</div>
+
+
+                        <div class="border-dark border-dashed border-end-0 border-start-0">
+                            <span>RCN #0000001</span> <br>
+                            <span>Cashier: SCR12</span> <br>
+                            <span>Date: 01/03/2022 15:47</span>
                         </div>
-                        <div class="small">Tel: +234 701 228 1956</div>
-                        <div class="border-top border-bottom border-dark small py-2">
-                            <span class="text-start">Timestamp: 01-03-2022  15:47</span>
-                            <!-- <span class="float-end">Time: 15:47</span> -->
-                        </div>
+
                         <div class="table-responsive small">
                             <table class="table table-borderless">
                                 <thead class="">
                                     <tr>
                                         <th scope="col">Product</th>
-                                        <th scope="col">Size</th>
-                                        <th scope="col">Price</th>
+                                        <th scope="col">Qty</th>
+                                        <th scope="col">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Titus Fish</td>
-                                        <td>20</td>
+                                        <td>Titus</td>
+                                        <td>2'3</td>
                                         <td>6000.00</td>
                                     </tr>
                                     <tr>
-                                        <td> Tilapia Fish</td>
-                                        <td>10</td>
+                                        <td>Tilapia</td>
+                                        <td>1'2</td>
                                         <td>3000.00</td>
                                     </tr>
+                                    <tr>
+                                        <td>Catfish</td>
+                                        <td>1'0</td>
+                                        <td>1200.00</td>
+                                    </tr>
                                 </tbody>
-                                <tfoot class="border-top border-bottom border-dark">
+                                <tfoot class="border-dark border-dashed border-end-0 border-top border-start-0">
                                     <tr class="h5 fw-bold">
-                                        <td class="text-uppercase" colspan="2">Amount</td>
+                                        <td class="text-uppercase" colspan="2">Total:</td>
                                         <td>9000.00</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">Change</td>
+                                        <td colspan="2">Cash:</td>
+                                        <td>9000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">Change:</td>
                                         <td>0.00</td>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
-                        <div>FishMan No. 0000001 #001</div>
+                        <div class="text-center">Thank you for shopping!</div>
                     </div>
 
                     <div class="d-flex justify-content-between mt-5">
                         <button class="btn btn-dark px-4" id="printReceiptBtn"><i class="fas fa-print"></i>
                             Print</button>
-                        <button class="btn btn-danger px-4" onclick="history.back()"><i class="fas fa-times"></i> Cancel</button>
+                        <button class="btn btn-danger px-4" onclick="history.back()"><i class="fas fa-times"></i>
+                            Cancel</button>
                     </div>
                 </div>
 

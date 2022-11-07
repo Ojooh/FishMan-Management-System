@@ -325,3 +325,7 @@ page[size="A4"] {
     box-shadow: 0;
   }
 }
+
+.border-dashed{
+  border: 1px dashed;
+}
