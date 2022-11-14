@@ -113,8 +113,8 @@
                                 role="tab" aria-controls="third" aria-selected="true">Currency</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link disabled" id="fourth-tab" data-bs-toggle="tab" data-bs-target="#fourth"
-                                role="tab" aria-controls="fourth" aria-selected="true">Backup</a>
+                            <a class="nav-link" id="fourth-tab" data-bs-toggle="tab" data-bs-target="#fourth" role="tab"
+                                aria-controls="fourth" aria-selected="true">Backup</a>
                         </li>
                     </ul>
 
@@ -173,8 +173,8 @@
                             <div class="mb-3">
                                 <span class="ms-sm-3 h5">Role Permission</span>
 
-                                <button type="button" class="btn btn-sm btn-outline-secondary float-end" data-bs-toggle="modal" data-bs-target="#addRole"><i
-                                        class="fa-solid fa-plus"></i>
+                                <button type="button" class="btn btn-sm btn-outline-secondary float-end"
+                                    data-bs-toggle="modal" data-bs-target="#addRole"><i class="fa-solid fa-plus"></i>
                                     Add</button>
 
                             </div>
@@ -312,7 +312,45 @@
 
 
 
-                        <div class="tab-pane fade" id="fourth" role="tabpanel" aria-labelledby="fourth-tab"></div>
+                        <div class="tab-pane fade p-3" id="fourth" role="tabpanel" aria-labelledby="fourth-tab">
+                            <div class="mb-3">
+                                <span class="h5">Backup database</span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-7">
+                                    <form action="" class="mt-5">
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <label for="exampleFormControlInput1" class="form-label">Select
+                                                    location:</label>
+                                            </div>
+                                            <div class="col-8">
+                                                <input class="form-control" type="file" id="formFile">
+                                                <br>
+                                                <button type="button" class="btn btn-info mb-3">Export</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-5">
+                                    <div>
+                                        <h6>Last saved</h6>
+                                        <div class="border">
+                                            <ul class="list-group list-group-flush small">
+                                                <li class="list-group-item">C:\System\newBackup at Tue 2, Nov 2022 02:33</li>
+                                                <li class="list-group-item">C:\System\newBackup\1 at Wed 3, Nov 2022 12:20</li>
+                                                <li class="list-group-item">C:\System\newBackup\2 at Sat 5, Nov 2022 17:45</li>
+                                                <li class="list-group-item">C:\System\newBackup\3 at Thu 9, Nov 2022 12:00</li>
+                                              </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
                     </div>
 
 
@@ -324,7 +362,8 @@
 
 
     <!-- Add Role Modal -->
-    <div class="modal fade" id="addRole"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="addRoleLabel" aria-hidden="true">
+    <div class="modal fade" id="addRole" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="addRoleLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -334,9 +373,9 @@
                 <div class="modal-body">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-9">
-                          <input type="text" id="inputRole" class="form-control">
+                            <input type="text" id="inputRole" class="form-control">
                         </div>
-                      </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

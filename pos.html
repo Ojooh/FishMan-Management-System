@@ -316,18 +316,18 @@
 
                                 <table class="table table-light table-borderless m-0 small">
 
-                                    <tr class="">
-                                        <td>Discounts (%)</td>
+                                    <!-- <tr class="">
+                                        <td>Discounts (&#8358;)</td>
                                         <td class="text-end"><input type="number" class="form-control" /></td>
-                                    </tr>
+                                    </tr> -->
                                     <tr class="">
                                         <td>Sub Total</td>
-                                        <td class="text-end">&#8358;100.00</td>
+                                        <td class="text-end">&#8358;20,000.00</td>
                                     </tr>
-                                    <tr class="">
+                                    <!-- <tr class="">
                                         <td>Tax (%)</td>
                                         <td class="text-end"><input type="number" class="form-control" /></td>
-                                    </tr>
+                                    </tr> -->
                                 </table>
 
                                 <table class="table table-borderless bg-white border-top m-0">
@@ -577,7 +577,8 @@
     </div>
 
     <!-- Credit -->
-    <div class="modal fade" id="creditModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="creditModalLabel" tabindex="-1">
+    <div class="modal fade" id="creditModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+        aria-labelledby="creditModalLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -589,7 +590,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-target="#payModal" data-bs-toggle="modal">Back</button>
-                    <button class="btn btn-success">Add</button>
+                    <button class="btn btn-success" disabled>Add</button>
                 </div>
             </div>
         </div>
@@ -618,19 +619,26 @@
                                 <th scope="row">1</th>
                                 <td>fm-tmp-01</td>
                                 <td>01/Jul/2022 08:30</td>
-                                <td><button class="btn btn-success">Checkout</button></td>
+                                <td>
+                                    <button class="btn btn-sm btn-success">Checkout</button>
+                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
                                 <td>fm-tmp-02</td>
                                 <td>01/Jul/2022 13:30</td>
-                                <td><button class="btn btn-success">Checkout</button></td>
+                                <td><button class="btn btn-sm btn-success">Checkout</button>
+                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
                                 <td>fm-tmp-03</td>
                                 <td>01/Jul/2022 19:30</td>
-                                <td><button class="btn btn-success">Checkout</button></td>
+                                <td><button class="btn btn-sm btn-success">Checkout</button>
+                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
